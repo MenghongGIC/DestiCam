@@ -1,2 +1,2 @@
 # Web-Design-Team5: DestiCam
-The officail travel website base in Cambodia
+The official travel website base in Cambodia
