@@ -6,7 +6,11 @@ Everything you need to build and deploy Solid project, powered by [solid-start](
 
 Install [bun](https://bun.com/) runtime: 
 ```bash
+# Windows
 powershell -c "irm bun.sh/install.ps1 | iex"
+
+# MacOS/Linux
+curl -fsSL https://bun.sh/install | bash
 ```
 Install dependencies
 
