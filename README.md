@@ -2,7 +2,13 @@
 
 Everything you need to build and deploy Solid project, powered by [solid-start](https://start.solidjs.com);
 
-## Installing
+## Clone Github Repo
+```bash
+git clone https://github.com/MenghongGIC/DestiCam
+```
+
+
+## Installation
 
 Install [bun](https://bun.com/) runtime: 
 ```bash
@@ -15,9 +21,11 @@ curl -fsSL https://bun.sh/install | bash
 Install dependencies
 
 ```bash
+cd DestiCam
 bun install
 
 # or
+cd DestiCam
 bun i
 ```
 
@@ -43,5 +51,5 @@ bun preview
 ## Deploy Production
 
 ```bash
-bun .output/server/index.mjs
+bun start
 ```
