@@ -1,1 +1,0 @@
-import{_ as e,a as t,i as n,n as r,s as i,u as a}from"./dist-CcXNyTqM.js";var o=a(`<main><!$><!/><h1>About`);function s(){return(()=>{var a=n(o),s=a.firstChild,[c,l]=t(s.nextSibling);return c.nextSibling,i(a,e(r,{children:`About`}),c,l),a})()}export{s as default};
