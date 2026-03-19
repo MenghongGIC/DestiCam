@@ -9,11 +9,10 @@
   },
   "dependencies": {
     "@solidjs/meta": "^0.29.4",
-    "@solidjs/router": "^0.15.0",
+    "@solidjs/router": "^0.16.1",
     "@solidjs/start": "2.0.0-alpha.2",
     "nitro": "^3.0.260311-beta",
     "solid-js": "^1.9.5",
-    "solid-start": "^0.3.11",
     "vite": "^7.0.0"
   },
   "engines": {
