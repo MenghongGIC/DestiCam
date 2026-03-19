@@ -10,6 +10,9 @@ git clone https://github.com/MenghongGIC/DestiCam
 
 ## Installation
 
+Download NodeJS:
+https://nodejs.org/en/download
+
 Install [bun](https://bun.com/) runtime: 
 ```bash
 # Windows
