@@ -2,18 +2,12 @@
 
 Everything you need to build and deploy Solid project, powered by [solid-start](https://start.solidjs.com);
 
-## Clone Github Repo
-```bash
-git clone https://github.com/MenghongGIC/DestiCam
-```
-
 
 ## Installation
 
-Download NodeJS (Required version >= 24):
+- Download NodeJS (Required version >= 24):
 https://nodejs.org/en/download
-
-Install [bun](https://bun.com/) runtime: 
+- Install [bun](https://bun.com/) runtime: 
 ```bash
 # Windows
 powershell -c "irm bun.sh/install.ps1 | iex"
@@ -21,14 +15,55 @@ powershell -c "irm bun.sh/install.ps1 | iex"
 # MacOS/Linux
 curl -fsSL https://bun.sh/install | bash
 ```
-Install dependencies
+
+
+## Clone Github Repo
+```bash
+git clone https://github.com/MenghongGIC/DestiCam
+cd DestiCam
+```
+
+
+## Create your own Git Branch
+***[Important]** Before you start coding.
+
+Make sure to create a new branch and not edit directly to main branch.
+
+This to prevent merge conflict.
 
 ```bash
-cd DestiCam
+# Show list of available branch
+git branch
+
+# Create branch example
+git branch "sophea"
+
+# Switch to your own branch
+git checkout "sophea"
+
+# Push code changes to your branch (We will merge later via web)
+git add "{file/folder path or use `--all` to add all changes}" # Example: git add --all
+git commit -m "{Type anything that you changes. Make it Short}"
+git push origin "sophea"
+```
+
+## How to pull update changes from main branch or other branch?
+***[Important]** Before pulling update from other branch. 
+
+Make sure to push codes to your branch or copy your unstages codes to somewhere else because this might replace your existing codes.
+```bash
+git stash
+git pull origin "{branch name}" #Example: git pull origin main
+git steash clear
+```
+
+
+## Install dependencies
+
+```bash
 bun install
 
 # or
-cd DestiCam
 bun i
 ```
 
@@ -56,3 +91,4 @@ bun preview
 ```bash
 bun start
 ```
+
