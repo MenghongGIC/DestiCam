@@ -3,6 +3,9 @@
 Everything you need to build and deploy Solid project, powered by [solid-start](https://start.solidjs.com);
 
 ## Clone Github Repo
+Make sure you clone to directory/folder that dont have space
+- `D:\Codes\learning\DestiCam` ✔️
+- `D:\Codes\learning with space\DestiCam` ❌
 ```bash
 git clone https://github.com/MenghongGIC/DestiCam
 ```
