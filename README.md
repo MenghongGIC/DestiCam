@@ -52,9 +52,7 @@ git push origin "sophea"
 
 Make sure to push codes to your branch or copy your unstages codes to somewhere else because this might replace your existing codes.
 ```bash
-git stash
 git pull origin "{branch name}" #Example: git pull origin main
-git steash clear
 ```
 
 
