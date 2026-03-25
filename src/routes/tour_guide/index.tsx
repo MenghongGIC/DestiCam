@@ -3,7 +3,6 @@ import Counter from "~/components/Counter";
 
 import styles from "./index.module.css";
 
-import Navigationbar from "~/components/NavigationBar";
 
 export default function TourGuide() {
     return (
@@ -18,7 +17,6 @@ export default function TourGuide() {
             >This is P</p>
         </h1>
 
-        <Navigationbar />
         <p>
             Visit{" "}
             <a href="https://start.solidjs.com" target="_blank">
