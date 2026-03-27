@@ -37,6 +37,7 @@ A{
     align-items: center;
 
     gap: 15px;
+
 }
 
 .nav_box > A {
@@ -46,30 +47,32 @@ A{
 }
 
 .nav_box > A:hover{
-    text-decoration: underline;
+
+    border-bottom: 2px solid var(--accent);
+
+}
+
+.nav_box > .current_nav_item{
+    border-bottom: 2px solid var(--accent);
+}
+
+.nav_box > .current_nav_item:hover{
+    text-decoration: none;
 }
 
 
 
-.account_box A{
-    background: none;
-    outline: none;
-    border: none;
-
-    text-decoration: none;
+.account_box button{
     cursor: pointer;
     color: var(--text-primary);
-
+    font-family: var(--font-family-secondary);
 }
 
-.account_box .sign_in_btn:hover{
-    text-decoration: underline;
-}
 
 .account_box .sign_up_btn{
+    font-family: var(--font-family-secondary);
     background: var(--primary);
     color: white;
-    padding: 12px;
     border-radius: 8px;
 }
 
