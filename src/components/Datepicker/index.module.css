@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: fit-content;
+}
