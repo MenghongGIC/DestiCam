@@ -3,6 +3,7 @@ import Counter from "~/components/Counter";
 
 import NavigationBar from "~/components/NavigationBar";
 
+
 export default function Home() {
   return (
     <main>
