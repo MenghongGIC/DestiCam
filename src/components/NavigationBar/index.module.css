@@ -8,7 +8,9 @@
 
 A{
     text-wrap: nowrap;
-    font-size: 1em
+    font-size: 1em;
+
+    font-family: var(--font-family-secondary);
 }
 
 .frame_1{
@@ -58,7 +60,6 @@ A{
     cursor: pointer;
     color: var(--text-primary);
 
-    font: var(--font-family-primary)
 }
 
 .account_box .sign_in_btn:hover{
