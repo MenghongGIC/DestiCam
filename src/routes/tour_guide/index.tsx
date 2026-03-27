@@ -11,6 +11,7 @@ export default function TourGuide() {
             <Title>Hello World</Title>
 
             <NavigationBar />
+            
 
         </main>
     );
