@@ -10,10 +10,19 @@ import styles from "./index.module.css";
 <Dropdown
     label="Location"
     default_id={1}
+    label_class={styles.dropdown_label}
+    dropdown_class={styles.dropdown}
+    onChange={(e) => {
+        console.log(e)
+    }}
     data={[
         {
             id: 1,
             value: "Cambodia"
+        },
+        {
+            id: 2,
+            value: "Vietnam"
         }
     ]}
 />
