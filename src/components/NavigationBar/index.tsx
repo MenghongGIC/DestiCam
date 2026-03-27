@@ -22,7 +22,7 @@ function NavItems(){
 }
 
 export default function NavigationBar() {
-    const { innerWidth} = useContext(GlobalContext)!;
+    const { innerWidth } = useContext(GlobalContext)!;
 
     return (
         <div class={styles.container}>

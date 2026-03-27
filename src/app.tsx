@@ -19,13 +19,14 @@ export default function App() {
 
   onMount(() => {
     const handler = () => {
+      console.log(window.innerWidth);
       setInnerWidth(window.innerWidth);
       setInnerHeight(window.innerHeight);
     };
     handler();
 
     window.addEventListener("resize", handler);
-    onCleanup(() => window.removeEventListener("resize", handler));
+    // onCleanup(() => window.removeEventListener("resize", handler));
   });
 
   return (
@@ -34,7 +35,9 @@ export default function App() {
         root={props => (
           <MetaProvider>
             <Title>DestiCam</Title>
-            <Suspense>{props.children}</Suspense>
+            <Suspense>
+              {props.children}
+            </Suspense>
           </MetaProvider>
         )}
       >
