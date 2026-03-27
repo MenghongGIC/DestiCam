@@ -5,13 +5,19 @@ import styles from "./index.module.css";
 
 import NavigationBar from "~/components/NavigationBar";
 
+
+
 export default function TourGuide() {
     return (
         <main>
-            <Title>Hello World</Title>
+            <Title>DestiCam - Tour Guide</Title>
 
             <NavigationBar />
-            <p class="text-green-600">Hello</p>
+
+            <button class="btn">
+                TEst
+            </button>
+            
 
         </main>
     );
