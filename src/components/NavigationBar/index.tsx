@@ -1,11 +1,9 @@
-import { createSignal, useContext } from "solid-js";
+import { createSignal, onMount, onCleanup  } from "solid-js";
 
 import { A } from "@solidjs/router";
 
 import styles from "./index.module.css";
 
-
-import { GlobalContext } from "~/app";
 
 
 function NavItems(){
@@ -22,7 +20,20 @@ function NavItems(){
 }
 
 export default function NavigationBar() {
-    const { innerWidth } = useContext(GlobalContext)!;
+    const [innerHeight, setInnerHeight] = createSignal(0);
+    const [innerWidth, setInnerWidth] = createSignal(0);
+
+
+    onMount(() => {
+        const handler = () => {
+            setInnerWidth(window.innerWidth);
+            setInnerHeight(window.innerHeight);
+        };
+        handler();
+    
+        window.addEventListener("resize", handler);
+        onCleanup(() => window.removeEventListener("resize", handler));
+    });
 
     return (
         <div class={styles.container}>
@@ -46,7 +57,7 @@ export default function NavigationBar() {
                     </A>
                 </div>
             </div>
-                {(innerWidth() < 980) &&
+                {(innerWidth() ?? 0 >= 980) &&
                     <div class={styles.frame_2}>
                     <NavItems />
                     </div>
