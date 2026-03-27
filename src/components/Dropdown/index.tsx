@@ -58,7 +58,7 @@ export default function Dropdown({
                 setToggle(e.currentTarget.open);
             }}
         >
-            <summary class={`btn m-1 ${dropdown_class} ${styles.dropdown}`}>
+            <summary class={`btn m-1 ${styles.dropdown} ${dropdown_class} `}>
                 {currentIndex() >= 0 
                     ? data?.[currentIndex()]?.value
                     : "Select"
