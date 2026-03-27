@@ -6,7 +6,7 @@ import styles from "./index.module.css";
 
 // -> Usages Example:
 {/* 
-
+import Dropdown from "~/components/Dropdown";
 <Dropdown
     label="Location"
     default_id={1}
@@ -63,7 +63,7 @@ export default function Dropdown({
     return (<div class={`${styles.container}`}>
         <label for={label} class={label_class}>{label}</label>
         <details name={label} class={`dropdown`}
-            on:toggle={(e)=>{
+            on:toggle={(e:any)=>{
                 setToggle(e.currentTarget.open);
             }}
         >

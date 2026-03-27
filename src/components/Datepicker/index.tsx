@@ -7,7 +7,7 @@ import styles from "./index.module.css";
 // Other arguments is optional.
 
 {/* 
-    
+import Datepicker from "~/components/Datepicker";
 <Datepicker/>
 
 */}
