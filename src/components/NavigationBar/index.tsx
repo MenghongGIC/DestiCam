@@ -57,11 +57,11 @@ export default function NavigationBar() {
                     </A>
                 </div>
             </div>
-                {(innerWidth() < 980) &&
-                    <div class={styles.frame_2}>
-                    <NavItems />
-                    </div>
-                }
+            {(innerWidth() < 980) &&
+                <div class={styles.frame_2}>
+                <NavItems />
+                </div>
+            }
         </div>
         
     );
