@@ -54,6 +54,9 @@ git push origin "sophea"
 Make sure to push codes to your branch or copy your unstages codes to somewhere else because this might replace your existing codes.
 ```bash
 git pull origin "{branch name}" #Example: git pull origin main
+
+# Make sure to do this command after you pull from other branch
+bun install
 ```
 
 
