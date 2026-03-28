@@ -278,7 +278,7 @@ function FilterContainer2(){
 
 function ItemComponent({data_info}: {data_info:  data_info_type}){
     return (
-        <div class={styles.item_box}>
+        <div class={`${styles.item_box} animate__animated animate__fadeIn`}>
             <img class={styles.profile_picture} src="/tour_guide_profile_picture.jpg"/>
             <div class={styles.info_box_1}>
                 <span class={styles.text_1}>{data_info.name}</span>
