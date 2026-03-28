@@ -42,6 +42,7 @@ git branch "sophea"
 git checkout "sophea"
 
 # Push code changes to your branch (We will merge later via web)
+# Using `--all` is not recommended. Please just add only files/folder that u changes.
 git add "{file/folder path or use `--all` to add all changes}" # Example: git add --all
 git commit -m "{Type anything that you changes. Make it Short}"
 git push origin "sophea"
