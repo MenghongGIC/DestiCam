@@ -148,15 +148,23 @@ function FilterContainer1(){
                 data={[
                     {
                         id: 1,
-                        value: "English"
+                        value: "1"
                     },
                     {
                         id: 2,
-                        value: "French"
+                        value: "2"
                     },
                     {
                         id: 3,
-                        value: "Khmer"
+                        value: "3"
+                    },
+                    {
+                        id: 4,
+                        value: "4"
+                    },
+                    {
+                        id: 5,
+                        value: "4+"
                     },
                 ]}
             />
