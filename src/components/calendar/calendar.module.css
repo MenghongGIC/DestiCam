@@ -1,0 +1,112 @@
+.calendar {
+  width: 100%;
+  font-family: inherit;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.monthLabel {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.navBtn {
+  background: none;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.navBtn:hover {
+  background: #f5f5f5;
+  border-color: #d0d0d0;
+}
+
+/* ── Weekday labels ── */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 0.5rem;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #aaa;
+  padding: 4px 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ── Days grid ── */
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  width: 36px;
+  margin: auto;
+  border-radius: 50%;
+  font-size: 13px;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+  user-select: none;
+}
+
+.day:hover {
+  background: #f0f0f0;
+}
+
+/* Today highlight */
+.today {
+  font-weight: 600;
+  color: #185FA5;
+}
+
+/* Selected day */
+.selected {
+  background: #185FA5 !important;
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.selected:hover {
+  background: #1a6fbf !important;
+}
+
+/* ── Footer ── */
+.footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+  font-size: 13px;
+  color: #888;
+}
+
+.selectedDate {
+  font-weight: 500;
+  color: #1a1a1a;
+}

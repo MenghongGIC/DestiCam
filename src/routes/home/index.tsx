@@ -1,13 +1,344 @@
 import { Title } from "@solidjs/meta";
+import { Component, createSignal, Show } from "solid-js";
 import styles from "./index.module.css";
 
-export default function Home() {
+import Calendar from "~/components/calendar/calendar";
+
+const App: Component = () => {
+  const [showCalendar, setShowCalendar] = createSignal(false);
+  const [dateLabel, setDateLabel] = createSignal("Oct 05 - Oct 12");
+  const [activeTab, setActiveTab] = createSignal<string>("Hotels");
+
+  const handleDate = (date: Date) => { 
+    setDateLabel(date.toDateString());setShowCalendar(false);
+  };
+  
+  const tabs = [
+    { label: "Hotels", icon: "hotel" },
+    { label: "Transport", icon: "directions_bus" },
+    { label: "Tour Guides", icon: "person_pin_circle" },
+    { label: "Things To Do", icon: "local_activity" },
+    { label: "Coupon & Deals", icon: "workspace_premium" },
+    { label: "Travel Bundles", icon: "card_travel" },
+
+  ];
+
+  const destinations = [
+    {
+      name: "Siem Reap",
+      properties: "1,240",
+      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDFumuGmkcuBH3QtwiMPtpfqRmcO_HfWPbPZNmQpQXXguTOtOp0n6tzpVlIKVomfqMpyuYGxe1U-LxIZPc4MaYY4AVIM0SDJjxChquuiWm9SbWjkLQpPrdc15wFIGmHnt3EV_mP4jTt-SMwDf6eEAns-NpsCqkSq44zQAEudEHXMS4eSu9xbPfQchdA-C5xnv6zN5mC3zyNr7YQosm6ZrcHtiUiSLCxLnt8Mzh5E7--F2jT8LhX6ppS_SYmcViMU-SlB_UvfmKTJVgd",
+    },
+    {
+      name: "Phnom Penh",
+      properties: "850",
+      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAQiLsuffMwL-TJPI2cppyou4T-VFqKFG6YrjWxaFkBBpyBizn19DphzoiH2-67hLcgObs9bYckENUHN5sk2rT158p-19oAmvT__aZoUc8Dhlupvf1zJ8cYLj8oDNw-sJN-Q1Urfr4lIi7YQcryU_ybwMuwI6nBSIrMeVWf677yWxXqA3V8OgjsdsowId55HqBunNDzYUhrCVTGYoITXWFyX5wosLpF03DyzqbF5XwBmeDP4D0L6PnPK-wxYKCXKb1MidUBBtM3Sx9V",
+    },
+    {
+      name: "Sihanoukville",
+      properties: "420",
+      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCmzAnkgMKhEDPnpCUqIwkwV-8EOOBXvFbcIqnKiymzcStktNKfS9dJ7PzjIZguip3aEYLytPX89_Im9erzm1UIuyOeL48THYJ7u8wVb-8pF2PHo_ls2YwtxeJMqyGcTu9vnXGqmPT_lUIB-JlVs4lQsC8OSykQCxdaQtnT-xL5gPDfvemricmFRvXQ9WrDLdaHrsxG2J8eMTMoC782LjasWEqrb9KITzYJgmHlPZ8aA9uH6L1__SSBvI5AtBFOWO_p9ctRAFXfnkZU",
+    },
+    {
+      name: "Kampot",
+      properties: "310",
+      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuADlsE4R2XrQPtD2547Zlu4eRSnjCpkAjf83WdVDDbDe3uqHCa46kwwVKqGObe60Gc1FFy2rvX9l4Mcifm8QG92iruJ3yrC4Iy2Sm7Br8acmYvkTm3K7AHkNTsUNlCBWwvnbVt9U5mjLRCQkYRg54Kl5Qmz-FQU0lrDU2kssG65e3lBx9jKraQz1u7olw2FuXnde2C3sT3_VEDn6sbpJTApsemLlETIQN2dSiC0bc0xwNkaxNVNP7x8W6tfZIfRYSc129XgJg2TF4NY",
+    },
+  ];
+
+  const gems = [
+    {
+      title: "Tonlé Sap Floating Village",
+      desc: "Experience the unique lifestyle of communities living on the water.",
+      price: "$25 / person",
+      rating: "4.9",
+      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDit9ZW6mSU1AxuNekaPde6sR0EWQH-3YcQIvzn-31LJ_ya-CYMaugBGEXI34guqzYjeuJQY-YQitH2EWqHojBKcdil9FpE_u6a188RBHLisyslOWftAq8DY3xJjvyEu9PPwS6N0DMbWumn8HqI3Yourk62wD4tDYDudgNwt2kYx5r7rPJ_s0ehSy0QV_L6vllxy2iMGJXGZFlOJ2AEC3AHoheflrAJiQoW40Ltdm_akD7vycI17uB8VI_G1ln9DlNQBiR5ttb1_GCK",
+    },
+    {
+      title: "Mondulkiri Jungle Trek",
+      desc: "Connect with wildlife and visit ethical elephant sanctuaries.",
+      price: "$45 / person",
+      rating: "4.8",
+      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBcse-8FsVtoYcjcL40hKFUXtDHBlZs4s5MBj9w8B2k27BURhf6j5upUbsECM-GIPzKD7jnxWb4oglAhe7HZsXSTiX_UYqGA63fDkJoeThQOJkNHvxdC0Vw-LD0MbhNbyTaDds8WkQYLlbeZ_c1Kqnc0YmXgnFmkJ4lNRKurgJpzPr22XdOhWtkU3WKlWZafhrP-EWMgjhcJfJQPTRX51Gm5P_w3MHEttrEF9fFZyitEyGPNYtEgosWHEfjGMFtOd2g-ipxL0d6xcwF",
+    },
+    {
+      title: "Phnom Penh Street Food Tour",
+      desc: "Taste authentic flavors from the best night markets with a local expert.",
+      price: "$15 / person",
+      rating: "5.0",
+      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAIGcvau4q90nUzLLSBC3ZRQ__RjaoHXR8DHDBqS1ixJ5vNC8p4lQhTbrs3xSCfYF5DxVfwYKZot7bjtEnpqH4OmOR4-trE09Ulruq2CUd9biiWZRQ9gxra-bUP6IEQGlTBmHMgkNfRJFnlTIzScYJIKQfTP4_V3cda7wEHKM-XwUsbLKbKD86AqfINE-WfavlVEEQxkJFVet8m9cD3pYWG8CPVCyZMa20_mLl9VaLEJwZOnYRqdYU7UFheqVjmReloNBOL0gtvDDzd",
+    },
+  ];
+
   return (
-    <>
-      <Title>DestiCam</Title>
-      <div class={styles.container}>
-        <h1>DestiCam</h1>
-      </div>
-    </>
+    <div class={styles.wrapper}>
+      {/* ── HEADER ── */}
+      <header class={styles.header}>
+        <div class={styles.headerInner}>
+          {/* Logo */}
+          <div class={styles.logo}>
+            <a href="#" class={styles.logoLink}>
+              <img src="/logo.png" alt="DestiCam Logo" class={styles.logoImg} />
+            </a>
+          </div>
+
+          {/* Nav */}
+          <nav class={styles.nav}>
+            <a href="#" class={`${styles.navLink} ${styles.navLinkActive}`}>Accommodation</a>
+            <a href="#" class={styles.navLink}>Transport</a>
+            <a href="#" class={styles.navLink}>Tour Guides</a>
+            <a href="#" class={styles.navLink}>Things To Do</a>
+            <a href="#" class={styles.navLink}>Coupon & Deals</a>
+            <a href="#" class={styles.navLink}>Travel Bundles</a>
+          </nav>
+
+          {/* Auth */}
+          <div class={styles.authButtons}>
+            <button class={styles.btnGhost}>Sign In</button>
+            <button class={styles.btnPrimary}>Create Account</button>
+          </div>
+        </div>
+      </header>
+
+      <main class={styles.main}>
+        {/* ── HERO ── */}
+        <section class={styles.hero}>
+          <div class={styles.heroBg}>
+            <img
+              src="Hero_Bg.jpg"
+              alt="Sunrise over Angkor Wat"
+              class={styles.heroBgImg}
+            />
+            <div class={styles.heroOverlay} />
+          </div>
+
+          <div class={styles.heroContent}>
+            <div class={styles.heroText}>
+              <h2 class={styles.heroHeading}>Discover the Magic of Cambodia</h2>
+              <p class={styles.heroSubtitle}>
+                Book your entire journey: From heritage hotels to local legendary guides.
+              </p>
+            </div>
+
+            {/* Search Box */}
+            <div class={styles.searchBox}>
+              {/* Tabs */}
+              <div class={styles.searchTabs}>
+                {tabs.map((tab) => (
+                  <button
+                    class={`${styles.searchTab} ${activeTab() === tab.label ? styles.searchTabActive : ""}`}
+                    onClick={() => setActiveTab(tab.label)}
+                  >
+                    <span class="material-symbols-outlined">{tab.icon}</span>
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Inputs */}
+              <div class={styles.searchInputRow}>
+                <div class={styles.searchField}>
+                  <p class={styles.searchLabel}>Location</p>
+                  <div class={styles.inputWrapper}>
+                    <span class={`material-symbols-outlined ${styles.inputIcon}`}>location_on</span>
+                    <input class={styles.input} type="text" placeholder="Where are you going?" />
+                  </div>
+                </div>
+
+                <div class={styles.searchField}>
+                  <p class={styles.searchLabel}>Dates</p>
+                    <div class={styles.inputWrapper}>
+                      <span class={`material-symbols-outlined ${styles.inputIcon}`}>calendar_month</span>
+
+                      {/* clicking input toggles calendar */}
+                      <input
+                        class={styles.input}
+                        type="text"
+                        placeholder="Oct 05 - Oct 12"
+                        value={dateLabel()}
+                        readOnly
+                        onClick={() => setShowCalendar(s => !s)}
+                      />
+
+                      {/* dropdown calendar */}
+                      <Show when={showCalendar()}>
+                        <div class={styles.calendarDropdown}>
+                          <Calendar onDateSelect={handleDate} />
+                        </div>
+                      </Show> 
+
+                  </div>
+                </div>
+
+                <div class={styles.searchField}>
+                  <p class={styles.searchLabel}>Travelers</p>
+                  <div class={styles.inputWrapper}>
+                    <span class={`material-symbols-outlined ${styles.inputIcon}`}>group</span>
+                    <input class={styles.input} type="text" placeholder="2 Adults, 1 Room" />
+                  </div>
+                </div>
+
+                <button class={styles.searchBtn}>
+                  <span class="material-symbols-outlined">search</span>
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── DESTINATIONS ── */}
+        <section class={styles.destSection}>
+          <div class={styles.destHeader}>
+            <div>
+              <h3 class={styles.sectionTitle}>Featured Destinations</h3>
+              <p class={styles.sectionSubtitle}>Explore the most visited cities in the Kingdom of Wonder</p>
+            </div>
+            <a href="#" class={styles.viewAll}>
+              View all <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+          </div>
+
+          <div class={styles.destGrid}>
+            {destinations.map((d) => (
+              <div class={styles.destCard}>
+                <div class={styles.destImgWrap}>
+                  <img src={d.img} alt={d.name} class={styles.destImg} />
+                  <div class={styles.destGradient} />
+                  <div class={styles.destInfo}>
+                    <h4 class={styles.destName}>{d.name}</h4>
+                    <p class={styles.destProps}>
+                      <span class="material-symbols-outlined">hotel</span>
+                      {d.properties} properties
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── HIDDEN GEMS ── */}
+        <section class={styles.gemsSection}>
+          <div class={styles.gemsInner}>
+            <div class={styles.gemsHeadingRow}>
+              <div class={styles.gemsAccentBar} />
+              <h3 class={styles.gemsSectionTitle}>Hidden Local Gems</h3>
+            </div>
+
+            <div class={styles.gemsGrid}>
+              {gems.map((g) => (
+                <div class={styles.gemCard}>
+                  <div class={styles.gemImgWrap}>
+                    <img src={g.img} alt={g.title} class={styles.gemImg} />
+                  </div>
+                  <div class={styles.gemBody}>
+                    <h5 class={styles.gemTitle}>{g.title}</h5>
+                    <p class={styles.gemDesc}>{g.desc}</p>
+                    <div class={styles.gemMeta}>
+                      <span class={styles.gemPrice}>{g.price}</span>
+                      <span class={styles.gemRating}>
+                        <span class="material-symbols-outlined">star</span>
+                        {g.rating}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* ── FOOTER ── */}
+      <footer class={styles.footer}>
+        <div class={styles.footerInner}>
+          <div class={styles.footerGrid}>
+            {/* Brand */}
+            <div class={styles.footerBrand}>
+              <div class={styles.logo}>
+                <div class={styles.logoIcon}>
+                  <span class="material-symbols-outlined">temple_hindu</span>
+                </div>
+                <h4 class={styles.logoText}>
+                  Desti<span class={styles.logoAccent}>Cam</span>
+                </h4>
+              </div>
+              <p class={styles.footerTagline}>
+                Cambodia's premium travel booking platform. We connect you with the heart of the
+                Kingdom, from ancient temples to modern comforts.
+              </p>
+              <div class={styles.footerSocial}>
+                <a href="#" class={styles.socialLink}><span class="material-symbols-outlined">public</span></a>
+                <a href="#" class={styles.socialLink}><span class="material-symbols-outlined">alternate_email</span></a>
+                <a href="#" class={styles.socialLink}><span class="material-symbols-outlined">phone_iphone</span></a>
+              </div>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h5 class={styles.footerHeading}>Services</h5>
+              <ul class={styles.footerList}>
+                {["Find Hotels", "Bus & Private Cars", "Local Tour Guides", "Events & Festivals"].map(
+                  (item) => (
+                    <li><a href="#" class={styles.footerLink}>{item}</a></li>
+                  )
+                )}
+              </ul>
+            </div>
+
+            {/* Support */}
+            <div>
+              <h5 class={styles.footerHeading}>Support</h5>
+              <ul class={styles.footerList}>
+                {["Help Center", "Terms of Service", "Privacy Policy", "Booking Guide"].map((item) => (
+                  <li><a href="#" class={styles.footerLink}>{item}</a></li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Newsletter */}
+            <div>
+              <h5 class={styles.footerHeading}>Newsletter</h5>
+              <p class={styles.footerNewsletterText}>Get exclusive travel deals and tips.</p>
+              <div class={styles.newsletterRow}>
+                <input
+                  class={styles.newsletterInput}
+                  type="email"
+                  placeholder="Your email"
+                />
+                <button class={styles.newsletterBtn}>
+                  <span class="material-symbols-outlined">send</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div class={styles.footerBottom}>
+            <p class={styles.copyright}>© 2024 DestiCam Cambodia. All rights reserved.</p>
+            <div class={styles.paymentLogos}>
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXGmqxtNIyXcUXHFfjkvRu7v4wvfVsxcE1ggpFJIHXFvUjwBDnVjIS4EwZuco2xB1xuOQJTV6cG2cKKCz57A87oGgT9V2AY8BwLf0buc__3DT7ScDd-5D3pveuYOasoKG36Nkz4fQKgGIuZQrd850mgWo-6_gBXd_29IPdVzf1Dx2Mt3aez_BUhLp5_QNMAVeO6k_RbR4GBFmPZsjgL5Kd7IHO_4_s_8kgjhbWcP9spO7tB8SRZIpAlNN-3Jmucd4h04Pr0BbhQloX"
+                alt="Visa"
+                class={styles.paymentLogo}
+              />
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuPWnV3L-QpAM0-ai5bPvat0cztd-qJvN5a_a9x2jhvsUo4M6km0JlGhJimLUyM1bYz0PBFURtadoZoY3r5tNaxnubreyipjWX27_CgdN059vKR-CojXPVUNq-7AKwR5rDdxblnRkZQNq21zMF3y9SVmNTPascKw2J3XIMWsP8FyKswhcWE78h0UGhFCJ37xY0WFrGNeNd-ioRroCuaqPvNrE34xMTj72r9yvn48dE4J7lW8bkQ4l2zE6eeFoRSc9DsgU8a4do3Oud"
+                alt="Mastercard"
+                class={styles.paymentLogo}
+              />
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGt40jOBvi8f3ddYemSLRmCkzYkqUy2AIuakibHEEUigURfnqJa1RUyRdNeqKuURup9Ay6ybKfWqst3I26ViahCTpgtsf4FdhO5asLc0Y8s99n6uCrKercPVWmKJ2eGXb5TjUZBLVOkzgo_SP-kwWy2vrR-RE2nONp2Jzk-bdSUHtPkf1RPzgAqTfK55X5o3Ik_a25vs-py9rMAgeya48ttwCG53nF0AQdHZd16JnyYUI_SP8Ln9baUyHWwub_J0Ujcv_TnjtLmSHn"
+                alt="ABA Pay"
+                class={styles.paymentLogo}
+              />
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
-}
+};
+
+export default App;
