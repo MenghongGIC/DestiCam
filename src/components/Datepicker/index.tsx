@@ -1,4 +1,4 @@
-import { createSignal, JSX, For, onMount, Show, createEffect} from "solid-js";
+import { createSignal, JSX, For, onMount, Show, createEffect, onCleanup} from "solid-js";
 import dayjs from "dayjs";
 
 import styles from "./index.module.css";
@@ -13,14 +13,7 @@ import Datepicker from "~/components/Datepicker";
 */}
 // <-
 
-export default function Datepicker({
-    id = "cally1",
-    label,
-    default_date,
-    onChange=(value) => {},
-    label_class,
-    datepicker_class
-}:{
+export default function Datepicker(props: {
     id?: string
     label?: string
     default_date?: string
@@ -28,35 +21,40 @@ export default function Datepicker({
     label_class?: string,
     datepicker_class?: string
 }){
+    const id = props.id || "cally1";
     let popver_ref!: HTMLDivElement;
 
 
     const [mounted, setMounted] = createSignal(false);
     const [toggle, setToggle] = createSignal(false);
 
-    const [currentDate, setCurrentDate] = createSignal<string|undefined>(default_date);
+    const [currentDate, setCurrentDate] = createSignal<string|undefined>(props.default_date);
 
     // Update internal signal when prop changes
     createEffect(() => {
-        setCurrentDate(default_date);
+        setCurrentDate(props.default_date);
     });
 
     onMount(() => {
         setMounted(true);
-        popver_ref.addEventListener("toggle", () => {
-            setToggle(popver_ref.matches(":popover-open"));
+        const handleToggle = (e: any) => {
+            setToggle(e.newState === "open");
+        };
+        popver_ref.addEventListener("toggle", handleToggle);
+        onCleanup(() => {
+            popver_ref.removeEventListener("toggle", handleToggle);
         });
     });
 
     return (<div class={`${styles.container}`}>
-        <Show when={label}>
-            <label for={id} class={`${styles.label} ${label_class}`}>
-                {label}
+        <Show when={props.label}>
+            <label for={id} class={`${styles.label} ${props.label_class}`}>
+                {props.label}
             </label>
         </Show>
         <button 
             popovertarget={`${id}-popover`} 
-            class={`input input-border ${styles.btn} ${datepicker_class}`} 
+            class={`input input-border ${styles.btn} ${props.datepicker_class}`} 
             id={id} 
             style={{ "anchor-name": `--${id}` }}
             type="button"
@@ -74,16 +72,24 @@ export default function Datepicker({
             ref={popver_ref} 
             popover="auto" 
             id={`${id}-popover`} 
-            class="dropdown bg-base-100 rounded-box shadow-lg" 
-            style={{ "position-anchor": `--${id}`, "position-area": "bottom center" }}
+            class={styles.popover} 
+            style={{ 
+                "position-anchor": `--${id}`, 
+                "position-area": "bottom center"
+            }}
         >
-            <Show when={mounted() && toggle()}>
+            <Show when={mounted()}>
                 <calendar-date class="cally"
                     value={currentDate()}
                     on:change={(e: any) => {
-                        onChange(e.target?.value);
-                        setCurrentDate(e.target?.value);
-                        popver_ref.hidePopover();
+                        const val = e.target?.value;
+                        if (val) {
+                            props.onChange?.(val);
+                            setCurrentDate(val);
+                        }
+                        if (typeof popver_ref.hidePopover === "function") {
+                            popver_ref.hidePopover();
+                        }
                     }}
                 >
                     <svg aria-label="Previous" class="fill-current size-4" slot="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.75 19.5 8.25 12l7.5-7.5"></path></svg>
@@ -94,3 +100,4 @@ export default function Datepicker({
         </div>
     </div>)
 }
+

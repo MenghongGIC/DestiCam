@@ -30,15 +30,7 @@ import Dropdown from "~/components/Dropdown";
 */}
 // <-
 
-export default function Dropdown({
-    label,
-    data,
-    default_id,
-    onChange=() => {},
-    allow_none = true,
-    label_class,
-    dropdown_class,
-}:{
+export default function Dropdown(props: {
     label: string,
     data?: {
         id: string|number,
@@ -57,19 +49,19 @@ export default function Dropdown({
     const [toggle, setToggle] = createSignal(false);
 
     const [currentIndex, setCurrentIndex] = createSignal<number>(
-        data?.findIndex((item) => item.id === default_id)??-1
+        props.data?.findIndex((item) => item.id === props.default_id)??-1
     );
 
     return (<div class={`${styles.container}`}>
-        <label for={label} class={label_class}>{label}</label>
-        <details name={label} class={`dropdown`}
+        <label for={props.label} class={props.label_class}>{props.label}</label>
+        <details name={props.label} class={`dropdown`}
             on:toggle={(e:any)=>{
                 setToggle(e.currentTarget.open);
             }}
         >
-            <summary class={`btn m-1 ${styles.dropdown} ${dropdown_class} `}>
+            <summary class={`btn m-1 ${styles.dropdown} ${props.dropdown_class} `}>
                 {currentIndex() >= 0 
-                    ? data?.[currentIndex()]?.value
+                    ? props.data?.[currentIndex()]?.value
                     : "Select"
                 }
                 {toggle() 
@@ -83,7 +75,7 @@ export default function Dropdown({
 
             </summary>
             <ul class="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                {allow_none && 
+                {props.allow_none !== false && 
                     <li
                         style={currentIndex() === -1
                             ? {
@@ -97,7 +89,7 @@ export default function Dropdown({
                         }}
                     >None</a></li>
                 }
-                <For each={data}>
+                <For each={props.data}>
                     {(item, index)=><>
                         <li
                             style={currentIndex() === index() 
@@ -110,7 +102,7 @@ export default function Dropdown({
                             <a
                                 on:click={()=>{
                                     setCurrentIndex(index());
-                                    onChange({index: index(), id: item.id, value: item.value});
+                                    props.onChange?.({index: index(), id: item.id, value: item.value});
                                 }}
                             
                             >{item.value}</a>
