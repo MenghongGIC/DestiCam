@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    position: relative;
+    gap: 0.5rem;
 }
 
 .btn{
@@ -9,4 +11,14 @@
     flex-direction: row;
     justify-content: space-between;
     min-width: fit-content;
+}
+
+[popover] {
+    z-index: 9999;
+    margin: 0;
+    padding: 0;
+    border: none;
+    overflow: visible;
+    position: fixed; /* Ensures it's not clipped by parent overflow */
+    background: white;
 }

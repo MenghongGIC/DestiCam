@@ -30,3 +30,17 @@ body {
   margin: 0;
   font-family: var(--font-family-secondary);
 }
+
+calendar-date {
+  --color-accent: #0b2a5b;
+  --color-text-on-accent: white;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 1rem;
+  display: block;
+}
+
+calendar-month {
+  --color-text: #333;
+}
