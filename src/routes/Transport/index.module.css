@@ -14,11 +14,24 @@
   z-index: 10;
 }
 
+@media (max-width: 768px) {
+  .searchHeader {
+    padding: 1.5rem 1rem;
+  }
+}
+
 .searchGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   align-items: end; /* Aligns all grid items to the bottom of the row */
+}
+
+@media (max-width: 768px) {
+  .searchGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 .inputGroup {
@@ -62,9 +75,49 @@
   gap: 2rem;
 }
 
+@media (max-width: 1024px) {
+  .mainContent {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
+
 .sidebar {
   width: 250px;
   flex-shrink: 0;
+}
+
+.sidebarHeader {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #0d2347;
+}
+
+.toggleAllBtn {
+  background: none;
+  border: none;
+  color: #006ce4;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.toggleAllBtn:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    order: 1;
+  }
 }
 
 .filterSection {
@@ -77,6 +130,27 @@
   margin-bottom: 1rem;
   border-bottom: 1px solid #ddd;
   padding-bottom: 0.5rem;
+}
+
+.collapsibleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.collapsibleHeader:hover {
+  color: #006ce4;
+}
+
+.chevron {
+  transition: transform 0.3s ease;
+  transform: rotate(-90deg);
+}
+
+.chevronOpen {
+  transform: rotate(0deg);
 }
 
 .priceInputs {
@@ -113,17 +187,44 @@
   gap: 1.5rem;
 }
 
+.resultsHeader {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: -0.5rem;
+}
+
+@media (max-width: 768px) {
+  .resultsList {
+    order: 2;
+  }
+}
+
 .transportCard {
   background: white;
   border-radius: 8px;
   display: flex;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   border: 1px solid #eee;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .transportCard {
+    flex-direction: column;
+  }
 }
 
 .cardImageWrapper {
   width: 280px;
   position: relative;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .cardImageWrapper {
+    width: 100%;
+    height: 200px;
+  }
 }
 
 .cardImage {
@@ -151,6 +252,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .cardDetails {
+    padding: 1rem;
+  }
 }
 
 .cardHeader {
@@ -181,6 +288,12 @@
   gap: 2rem;
 }
 
+@media (max-width: 480px) {
+  .journeyInfo {
+    gap: 1rem;
+  }
+}
+
 .timeBlock {
   display: flex;
   flex-direction: column;
@@ -202,6 +315,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  min-width: 50px;
 }
 
 .line {
@@ -230,6 +344,38 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .cardPriceAction {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #eee;
+    align-items: center;
+    padding: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .priceSub {
+    margin-bottom: 0 !important;
+  }
+
+  .bookBtn {
+    width: auto !important;
+  }
+}
+
+.priceInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+  .priceInfo {
+    align-items: flex-start;
+  }
 }
 
 .priceLabel {
@@ -267,6 +413,12 @@
   margin: 0 auto;
 }
 
+@media (max-width: 768px) {
+  .bookingContainer {
+    padding: 1rem;
+  }
+}
+
 .backLink {
   display: flex;
   align-items: center;
@@ -283,12 +435,24 @@
   gap: 2rem;
 }
 
+@media (max-width: 968px) {
+  .bookingGrid {
+    flex-direction: column-reverse;
+  }
+}
+
 .paymentSection {
   flex-grow: 1;
   background: white;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 768px) {
+  .paymentSection {
+    padding: 1.5rem 1rem;
+  }
 }
 
 .summarySidebar {
@@ -298,6 +462,12 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   height: fit-content;
+}
+
+@media (max-width: 968px) {
+  .summarySidebar {
+    width: 100%;
+  }
 }
 
 .sectionTitle {
@@ -328,6 +498,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+}
+
+@media (max-width: 480px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
 }
 
 .bookingSummaryHeader {

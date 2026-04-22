@@ -17,6 +17,22 @@ export default function TransportPage() {
   const [travelers, setTravelers] = createSignal('1 Passenger');
   const [transportType, setTransportType] = createSignal('All');
 
+  // Collapsible sections state
+  const [showPrice, setShowPrice] = createSignal(true);
+  const [showDeparture, setShowDeparture] = createSignal(true);
+  const [showDuration, setShowDuration] = createSignal(true);
+  const [showCompany, setShowCompany] = createSignal(true);
+
+  const allOpen = () => showPrice() && showDeparture() && showDuration() && showCompany();
+
+  const toggleAllFilters = () => {
+    const targetState = !allOpen();
+    setShowPrice(targetState);
+    setShowDeparture(targetState);
+    setShowDuration(targetState);
+    setShowCompany(targetState);
+  };
+
   const filteredData = createMemo(() => {
     return transportData.filter(item => {
       const matchFrom = item.from.toLowerCase().includes(fromCity().toLowerCase());
@@ -112,50 +128,88 @@ export default function TransportPage() {
 
         <div class={styles.mainContent}>
           <aside class={styles.sidebar}>
+            <div class={styles.sidebarHeader}>
+              <button class={styles.toggleAllBtn} onClick={toggleAllFilters}>
+                {allOpen() ? "Hide all filters" : "Show all filters"}
+              </button>
+            </div>
             <div class={styles.filterSection}>
-              <h3>Price Range:</h3>
-              <div class={styles.priceInputs}>
-                <div class={styles.inputGroupFilter}>
-                  <label>From:</label>
-                  <input type="text" class={styles.priceInput} value={`$${priceRange().min}`} />
+              <h3 onClick={() => setShowPrice(!showPrice())} class={styles.collapsibleHeader}>
+                Price Range:
+                <svg class={`${styles.chevron} ${showPrice() ? styles.chevronOpen : ""}`} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </h3>
+              <Show when={showPrice()}>
+                <div class={styles.priceInputs}>
+                  <div class={styles.inputGroupFilter}>
+                    <label>From:</label>
+                    <input type="text" class={styles.priceInput} value={`$${priceRange().min}`} />
+                  </div>
+                  <div class={styles.inputGroupFilter}>
+                    <label>To:</label>
+                    <input type="text" class={styles.priceInput} value={`$${priceRange().max}`} />
+                  </div>
                 </div>
-                <div class={styles.inputGroupFilter}>
-                  <label>To:</label>
-                  <input type="text" class={styles.priceInput} value={`$${priceRange().max}`} />
+              </Show>
+            </div>
+
+            <div class={styles.filterSection}>
+              <h3 onClick={() => setShowDeparture(!showDeparture())} class={styles.collapsibleHeader}>
+                Departure Time
+                <svg class={`${styles.chevron} ${showDeparture() ? styles.chevronOpen : ""}`} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </h3>
+              <Show when={showDeparture()}>
+                <div class={styles.checkboxGroup}>
+                  <label class={styles.checkboxLabel}><input type="checkbox" /> Morning (06:00 - 12:00)</label>
+                  <label class={styles.checkboxLabel}><input type="checkbox" /> Afternoon (12:00 - 18:00)</label>
+                  <label class={styles.checkboxLabel}><input type="checkbox" /> Evening (18:00 - 00:00)</label>
                 </div>
-              </div>
+              </Show>
             </div>
 
             <div class={styles.filterSection}>
-              <h3>Departure Time</h3>
-              <div class={styles.checkboxGroup}>
-                <label class={styles.checkboxLabel}><input type="checkbox" /> Morning (06:00 - 12:00)</label>
-                <label class={styles.checkboxLabel}><input type="checkbox" /> Afternoon (12:00 - 18:00)</label>
-                <label class={styles.checkboxLabel}><input type="checkbox" /> Evening (18:00 - 00:00)</label>
-              </div>
+              <h3 onClick={() => setShowDuration(!showDuration())} class={styles.collapsibleHeader}>
+                Duration
+                <svg class={`${styles.chevron} ${showDuration() ? styles.chevronOpen : ""}`} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </h3>
+              <Show when={showDuration()}>
+                <div class={styles.checkboxGroup}>
+                  <label class={styles.checkboxLabel}><input type="checkbox" /> 0 - 2 hours</label>
+                  <label class={styles.checkboxLabel}><input type="checkbox" /> 2 - 5 hours</label>
+                  <label class={styles.checkboxLabel}><input type="checkbox" /> 5+ hours</label>
+                </div>
+              </Show>
             </div>
 
             <div class={styles.filterSection}>
-              <h3>Duration</h3>
-              <div class={styles.checkboxGroup}>
-                <label class={styles.checkboxLabel}><input type="checkbox" /> 0 - 2 hours</label>
-                <label class={styles.checkboxLabel}><input type="checkbox" /> 2 - 5 hours</label>
-                <label class={styles.checkboxLabel}><input type="checkbox" /> 5+ hours</label>
-              </div>
-            </div>
-
-            <div class={styles.filterSection}>
-              <h3>Transport Company</h3>
-              <div class={styles.checkboxGroup}>
-                <label class={styles.checkboxLabel}><input type="checkbox" checked /> Giant Ibis</label>
-                <label class={styles.checkboxLabel}><input type="checkbox" checked /> Mekong Express</label>
-                <label class={styles.checkboxLabel}><input type="checkbox" checked /> Virak Buntham</label>
-                <label class={styles.checkboxLabel}><input type="checkbox" checked /> Cambodia Angkor Air</label>
-              </div>
+              <h3 onClick={() => setShowCompany(!showCompany())} class={styles.collapsibleHeader}>
+                Transport Company
+                <svg class={`${styles.chevron} ${showCompany() ? styles.chevronOpen : ""}`} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </h3>
+              <Show when={showCompany()}>
+                <div class={styles.checkboxGroup}>
+                  <label class={styles.checkboxLabel}><input type="checkbox" checked /> Giant Ibis</label>
+                  <label class={styles.checkboxLabel}><input type="checkbox" checked /> Mekong Express</label>
+                  <label class={styles.checkboxLabel}><input type="checkbox" checked /> Virak Buntham</label>
+                  <label class={styles.checkboxLabel}><input type="checkbox" checked /> Cambodia Angkor Air</label>
+                </div>
+              </Show>
             </div>
           </aside>
 
           <main class={styles.resultsList}>
+            <div class={styles.resultsHeader}>
+              <button class={styles.toggleAllBtn} onClick={toggleAllFilters}>
+                {allOpen() ? "Hide all filters" : "Show all filters"}
+              </button>
+            </div>
             <For each={filteredData()}>
               {(item) => (
                 <div class={styles.transportCard}>
@@ -191,9 +245,11 @@ export default function TransportPage() {
                     </Show>
                   </div>
                   <div class={styles.cardPriceAction}>
-                    <span class={styles.priceLabel}>From</span>
-                    <span class={styles.priceValue}>${item.price}</span>
-                    <span class={styles.priceSub}>per person</span>
+                    <div class={styles.priceInfo}>
+                      <span class={styles.priceLabel}>From</span>
+                      <span class={styles.priceValue}>${item.price}</span>
+                      <span class={styles.priceSub}>per person</span>
+                    </div>
                     <button class={styles.bookBtn} onClick={() => handleBookNow(item)}>Book Now</button>
                   </div>
                 </div>
