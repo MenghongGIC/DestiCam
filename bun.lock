@@ -18,9 +18,6 @@
         "vinxi": "^0.5.7",
         "vite-plugin-webfont-dl": "^3.12.0",
       },
-      "devDependencies": {
-        "daisyui": "^5.5.19",
-      },
     },
   },
   "packages": {

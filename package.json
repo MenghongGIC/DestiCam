@@ -25,5 +25,5 @@
     "node": ">=22"
   },
   "devDependencies": {
-  },
+  }
 }
