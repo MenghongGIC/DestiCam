@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.dropdown{
+    background: var(--accent);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
