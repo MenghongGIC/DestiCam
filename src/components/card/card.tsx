@@ -13,7 +13,6 @@ const Card: Component<CardProps> = (props) => {
       <div class="card-body">
         <h3>{props.title}</h3>
         {props.description && <p>{props.description}</p>}
-        
       </div>
     </div>
   );

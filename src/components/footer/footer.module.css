@@ -1,0 +1,162 @@
+.footer {
+  background: var(--white);
+  border-top: 1px solid var(--border-light);
+  padding: 3rem 0;
+}
+
+.footerInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .footerGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footerGrid {
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  }
+}
+
+.footerBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.footerTagline {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.footerSocial {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.socialLink {
+  color: #94a3b8;
+  transition: color 0.15s;
+  text-decoration: none;
+}
+
+.socialLink:hover {
+  color: var(--primary);
+}
+
+.footerHeading {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+}
+
+.footerList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footerLink {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.footerLink:hover {
+  color: var(--primary);
+}
+
+.footerNewsletterText {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.newsletterRow {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.newsletterInput {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  border-radius: 0.5rem;
+  color: var(--text-dark);
+  font-family: var(--font);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.newsletterInput:focus {
+  border-color: var(--primary);
+}
+
+.newsletterBtn {
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.newsletterBtn:hover {
+  background: var(--primary-hover);
+}
+
+/* Footer bottom */
+.footerBottom {
+  padding-top: 2rem;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footerBottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.copyright {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.paymentLogos {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.paymentLogo {
+  height: 1.25rem;
+  object-fit: contain;
+}
+

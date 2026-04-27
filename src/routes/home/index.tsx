@@ -2,7 +2,13 @@ import { Title } from "@solidjs/meta";
 import { Component, createSignal, Show } from "solid-js";
 import styles from "./index.module.css";
 
-import Calendar from "~/components/calendar/calendar";
+
+import Calendar from "~/components/calendar/index";
+import Footer from "~/components/footer/footer";
+import Logo from "~/components/logo/logo";
+import NavigateBar from "~/components/navigate_bar";
+import Card from "~/components/card/card";
+import Button from "~/components/button/button";
 
 const App: Component = () => {
   const [showCalendar, setShowCalendar] = createSignal(false);
@@ -76,27 +82,13 @@ const App: Component = () => {
       <header class={styles.header}>
         <div class={styles.headerInner}>
           {/* Logo */}
-          <div class={styles.logo}>
-            <a href="#" class={styles.logoLink}>
-              <img src="/logo.png" alt="DestiCam Logo" class={styles.logoImg} />
-            </a>
-          </div>
-
-          {/* Nav */}
-          <nav class={styles.nav}>
-            <a href="#" class={`${styles.navLink} ${styles.navLinkActive}`}>Accommodation</a>
-            <a href="#" class={styles.navLink}>Transport</a>
-            <a href="#" class={styles.navLink}>Tour Guides</a>
-            <a href="#" class={styles.navLink}>Things To Do</a>
-            <a href="#" class={styles.navLink}>Coupon & Deals</a>
-            <a href="#" class={styles.navLink}>Travel Bundles</a>
-          </nav>
-
+            {/* Navigate Bar */}
+            <NavigateBar/>
           {/* Auth */}
-          <div class={styles.authButtons}>
+          {/* <div class={styles.authButtons}>
             <button class={styles.btnGhost}>Sign In</button>
             <button class={styles.btnPrimary}>Create Account</button>
-          </div>
+          </div> */}
         </div>
       </header>
 
@@ -159,13 +151,8 @@ const App: Component = () => {
                         readOnly
                         onClick={() => setShowCalendar(s => !s)}
                       />
-
-                      {/* dropdown calendar */}
-                      <Show when={showCalendar()}>
-                        <div class={styles.calendarDropdown}>
-                          <Calendar onDateSelect={handleDate} />
-                        </div>
-                      </Show> 
+                      {/* Calendar */}
+                  <Calendar/>
 
                   </div>
                 </div>
@@ -249,94 +236,7 @@ const App: Component = () => {
           </div>
         </section>
       </main>
-
-      {/* ── FOOTER ── */}
-      <footer class={styles.footer}>
-        <div class={styles.footerInner}>
-          <div class={styles.footerGrid}>
-            {/* Brand */}
-            <div class={styles.footerBrand}>
-              <div class={styles.logo}>
-                <div class={styles.logoIcon}>
-                  <span class="material-symbols-outlined">temple_hindu</span>
-                </div>
-                <h4 class={styles.logoText}>
-                  Desti<span class={styles.logoAccent}>Cam</span>
-                </h4>
-              </div>
-              <p class={styles.footerTagline}>
-                Cambodia's premium travel booking platform. We connect you with the heart of the
-                Kingdom, from ancient temples to modern comforts.
-              </p>
-              <div class={styles.footerSocial}>
-                <a href="#" class={styles.socialLink}><span class="material-symbols-outlined">public</span></a>
-                <a href="#" class={styles.socialLink}><span class="material-symbols-outlined">alternate_email</span></a>
-                <a href="#" class={styles.socialLink}><span class="material-symbols-outlined">phone_iphone</span></a>
-              </div>
-            </div>
-
-            {/* Services */}
-            <div>
-              <h5 class={styles.footerHeading}>Services</h5>
-              <ul class={styles.footerList}>
-                {["Find Hotels", "Bus & Private Cars", "Local Tour Guides", "Events & Festivals"].map(
-                  (item) => (
-                    <li><a href="#" class={styles.footerLink}>{item}</a></li>
-                  )
-                )}
-              </ul>
-            </div>
-
-            {/* Support */}
-            <div>
-              <h5 class={styles.footerHeading}>Support</h5>
-              <ul class={styles.footerList}>
-                {["Help Center", "Terms of Service", "Privacy Policy", "Booking Guide"].map((item) => (
-                  <li><a href="#" class={styles.footerLink}>{item}</a></li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Newsletter */}
-            <div>
-              <h5 class={styles.footerHeading}>Newsletter</h5>
-              <p class={styles.footerNewsletterText}>Get exclusive travel deals and tips.</p>
-              <div class={styles.newsletterRow}>
-                <input
-                  class={styles.newsletterInput}
-                  type="email"
-                  placeholder="Your email"
-                />
-                <button class={styles.newsletterBtn}>
-                  <span class="material-symbols-outlined">send</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom bar */}
-          <div class={styles.footerBottom}>
-            <p class={styles.copyright}>© 2024 DestiCam Cambodia. All rights reserved.</p>
-            <div class={styles.paymentLogos}>
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXGmqxtNIyXcUXHFfjkvRu7v4wvfVsxcE1ggpFJIHXFvUjwBDnVjIS4EwZuco2xB1xuOQJTV6cG2cKKCz57A87oGgT9V2AY8BwLf0buc__3DT7ScDd-5D3pveuYOasoKG36Nkz4fQKgGIuZQrd850mgWo-6_gBXd_29IPdVzf1Dx2Mt3aez_BUhLp5_QNMAVeO6k_RbR4GBFmPZsjgL5Kd7IHO_4_s_8kgjhbWcP9spO7tB8SRZIpAlNN-3Jmucd4h04Pr0BbhQloX"
-                alt="Visa"
-                class={styles.paymentLogo}
-              />
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuPWnV3L-QpAM0-ai5bPvat0cztd-qJvN5a_a9x2jhvsUo4M6km0JlGhJimLUyM1bYz0PBFURtadoZoY3r5tNaxnubreyipjWX27_CgdN059vKR-CojXPVUNq-7AKwR5rDdxblnRkZQNq21zMF3y9SVmNTPascKw2J3XIMWsP8FyKswhcWE78h0UGhFCJ37xY0WFrGNeNd-ioRroCuaqPvNrE34xMTj72r9yvn48dE4J7lW8bkQ4l2zE6eeFoRSc9DsgU8a4do3Oud"
-                alt="Mastercard"
-                class={styles.paymentLogo}
-              />
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGt40jOBvi8f3ddYemSLRmCkzYkqUy2AIuakibHEEUigURfnqJa1RUyRdNeqKuURup9Ay6ybKfWqst3I26ViahCTpgtsf4FdhO5asLc0Y8s99n6uCrKercPVWmKJ2eGXb5TjUZBLVOkzgo_SP-kwWy2vrR-RE2nONp2Jzk-bdSUHtPkf1RPzgAqTfK55X5o3Ik_a25vs-py9rMAgeya48ttwCG53nF0AQdHZd16JnyYUI_SP8Ln9baUyHWwub_J0Ujcv_TnjtLmSHn"
-                alt="ABA Pay"
-                class={styles.paymentLogo}
-              />
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

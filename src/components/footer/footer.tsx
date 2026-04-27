@@ -1,40 +1,74 @@
 import { Component } from 'solid-js';
 import styles from './footer.module.css';
-
+import Logo from '~/components/logo/logo';
 const Footer: Component = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer class="bg-gray-800 text-white py-8">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-3 gap-8 mb-8">
-                    <div>
-                        <h3 class="font-bold mb-4">Product</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="hover:text-gray-300">Features</a></li>
-                            <li><a href="#" class="hover:text-gray-300">Pricing</a></li>
-                        </ul>
+        <footer class={styles.footer}>
+                <div class={styles.footerInner}>
+                  <div class={styles.footerGrid}>
+                    {/* Brand */}
+                    <div class={styles.footerBrand}>
+                      <div class={styles.logo}>
+                       <Logo/>
+                      </div>
+                      <p class={styles.footerTagline}>
+                        Cambodia's premium travel booking platform. We connect you with the heart of the
+                        Kingdom, from ancient temples to modern comforts.
+                      </p>
+                      <div class={styles.footerSocial}>
+                        <a href="#" class={styles.socialLink}><span class="material-symbols-outlined">public</span></a>
+                        <a href="#" class={styles.socialLink}><span class="material-symbols-outlined">alternate_email</span></a>
+                        <a href="#" class={styles.socialLink}><span class="material-symbols-outlined">phone_iphone</span></a>
+                      </div>
                     </div>
+        
+                    {/* Services */}
                     <div>
-                        <h3 class="font-bold mb-4">Company</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="hover:text-gray-300">About</a></li>
-                            <li><a href="#" class="hover:text-gray-300">Contact</a></li>
-                        </ul>
+                      <h5 class={styles.footerHeading}>Services</h5>
+                      <ul class={styles.footerList}>
+                        {["Find Hotels", "Bus & Private Cars", "Local Tour Guides", "Events & Festivals"].map(
+                          (item) => (
+                            <li><a href="#" class={styles.footerLink}>{item}</a></li>
+                          )
+                        )}
+                      </ul>
                     </div>
+        
+                    {/* Support */}
                     <div>
-                        <h3 class="font-bold mb-4">Legal</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="hover:text-gray-300">Privacy</a></li>
-                            <li><a href="#" class="hover:text-gray-300">Terms</a></li>
-                        </ul>
+                      <h5 class={styles.footerHeading}>Support</h5>
+                      <ul class={styles.footerList}>
+                        {["Help Center", "Terms of Service", "Privacy Policy", "Booking Guide"].map((item) => (
+                          <li><a href="#" class={styles.footerLink}>{item}</a></li>
+                        ))}
+                      </ul>
                     </div>
+        
+                    {/* Newsletter */}
+                    <div>
+                      <h5 class={styles.footerHeading}>Newsletter</h5>
+                      <p class={styles.footerNewsletterText}>Get exclusive travel deals and tips.</p>
+                      <div class={styles.newsletterRow}>
+                        <input
+                          class={styles.newsletterInput}
+                          type="email"
+                          placeholder="Your email"
+                        />
+                        <button class={styles.newsletterBtn}>
+                          <span class="material-symbols-outlined">send</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+        
+                  {/* Bottom bar */}
+                  <div class={styles.footerBottom}>
+                    <p class={styles.copyright}>© 2024 DestiCam Cambodia. All rights reserved.</p>
+                  </div>
                 </div>
-                <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
-                    <p>&copy; {currentYear} DestiCam. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
+              </footer>
     );
 };
 
