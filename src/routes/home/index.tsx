@@ -3,30 +3,56 @@ import { Component, createSignal, Show } from "solid-js";
 import styles from "./index.module.css";
 
 
-import Calendar from "~/components/calendar/index";
+import Datepicker from "~/components/Datepicker";
 import Footer from "~/components/footer/footer";
 import Logo from "~/components/logo/logo";
-import NavigateBar from "~/components/navigate_bar";
+import NavigationBar from "~/components/NavigationBar";
 import Card from "~/components/card/card";
 import Button from "~/components/button/button";
+
+interface TabConfig {
+  label: string;
+  icon: string;
+}
+
+interface SearchFormState {
+  location: string;
+  dateStart: string;
+  dateEnd: string;
+  travelers: string;
+  guests?: string;
+  vehicle?: string;
+}
 
 const App: Component = () => {
   const [showCalendar, setShowCalendar] = createSignal(false);
   const [dateLabel, setDateLabel] = createSignal("Oct 05 - Oct 12");
   const [activeTab, setActiveTab] = createSignal<string>("Hotels");
+  
+  // Form state controlled based on active tab
+  const [formState, setFormState] = createSignal<SearchFormState>({
+    location: "",
+    dateStart: "",
+    dateEnd: "",
+    travelers: "2 Adults, 1 Room",
+  });
 
   const handleDate = (date: Date) => { 
-    setDateLabel(date.toDateString());setShowCalendar(false);
+    setDateLabel(date.toDateString());
+    setShowCalendar(false);
+  };
+
+  const handleFormChange = (field: keyof SearchFormState, value: string) => {
+    setFormState(prev => ({ ...prev, [field]: value }));
   };
   
-  const tabs = [
+  const tabs: TabConfig[] = [
     { label: "Hotels", icon: "hotel" },
     { label: "Transport", icon: "directions_bus" },
     { label: "Tour Guides", icon: "person_pin_circle" },
     { label: "Things To Do", icon: "local_activity" },
     { label: "Coupon & Deals", icon: "workspace_premium" },
     { label: "Travel Bundles", icon: "card_travel" },
-
   ];
 
   const destinations = [
@@ -76,19 +102,162 @@ const App: Component = () => {
     },
   ];
 
+  // Render form fields based on active tab
+  const renderTabSpecificFields = () => {
+    switch (activeTab()) {
+      case "Hotels":
+        return (
+          <>
+            <div class={styles.searchField}>
+              <p class={styles.searchLabel}>Location</p>
+              <div class={styles.inputWrapper}>
+                <span class={`material-symbols-outlined ${styles.inputIcon}`}>location_on</span>
+                <input 
+                  class={styles.input} 
+                  type="text" 
+                  placeholder="Where are you going?" 
+                  value={formState().location}
+                  onInput={(e: InputEvent & { currentTarget: HTMLInputElement }) => handleFormChange("location", e.currentTarget.value)}
+                />
+              </div>
+            </div>
+
+            <div class={styles.searchField}>
+              <p class={styles.searchLabel}>Dates</p>
+              <div class={styles.inputWrapper}>
+                <span class={`material-symbols-outlined ${styles.inputIcon}`}>calendar_month</span>
+                <input
+                  class={styles.input}
+                  type="text"
+                  placeholder="Oct 05 - Oct 12"
+                  value={dateLabel()}
+                  readOnly
+                  onClick={() => setShowCalendar(s => !s)}
+                />
+              </div>
+              <Show when={showCalendar()}>
+                <div class={styles.datepickerWrapper}>
+                  <Datepicker />
+                </div>
+              </Show>
+            </div>
+
+            <div class={styles.searchField}>
+              <p class={styles.searchLabel}>Rooms & Guests</p>
+              <div class={styles.inputWrapper}>
+                <span class={`material-symbols-outlined ${styles.inputIcon}`}>group</span>
+                <input 
+                  class={styles.input} 
+                  type="text" 
+                  placeholder="2 Adults, 1 Room" 
+                  value={formState().travelers}
+                  onInput={(e: InputEvent & { currentTarget: HTMLInputElement }) => handleFormChange("travelers", e.currentTarget.value)}
+                />
+              </div>
+            </div>
+          </>
+        );
+
+      case "Transport":
+        return (
+          <>
+            <div class={styles.searchField}>
+              <p class={styles.searchLabel}>Pickup Location</p>
+              <div class={styles.inputWrapper}>
+                <span class={`material-symbols-outlined ${styles.inputIcon}`}>location_on</span>
+                <input 
+                  class={styles.input} 
+                  type="text" 
+                  placeholder="Where are you going?" 
+                  value={formState().location}
+                  onInput={(e: InputEvent & { currentTarget: HTMLInputElement }) => handleFormChange("location", e.currentTarget.value)}
+                />
+              </div>
+            </div>
+
+            <div class={styles.searchField}>
+              <p class={styles.searchLabel}>Vehicle Type</p>
+              <div class={styles.inputWrapper}>
+                <span class={`material-symbols-outlined ${styles.inputIcon}`}>two_wheeler</span>
+                <input 
+                  class={styles.input} 
+                  type="text" 
+                  placeholder="Car, Bike, Bus" 
+                  value={formState().vehicle || ""}
+                  onInput={(e: InputEvent & { currentTarget: HTMLInputElement }) => handleFormChange("vehicle", e.currentTarget.value)}
+                />
+              </div>
+            </div>
+          </>
+        );
+
+      case "Tour Guides":
+        return (
+          <>
+            <div class={styles.searchField}>
+              <p class={styles.searchLabel}>Destination</p>
+              <div class={styles.inputWrapper}>
+                <span class={`material-symbols-outlined ${styles.inputIcon}`}>location_on</span>
+                <input 
+                  class={styles.input} 
+                  type="text" 
+                  placeholder="Where are you going?" 
+                  value={formState().location}
+                  onInput={(e: InputEvent & { currentTarget: HTMLInputElement }) => handleFormChange("location", e.currentTarget.value)}
+                />
+              </div>
+            </div>
+
+            <div class={styles.searchField}>
+              <p class={styles.searchLabel}>Tour Date</p>
+              <div class={styles.inputWrapper}>
+                <span class={`material-symbols-outlined ${styles.inputIcon}`}>calendar_month</span>
+                <input
+                  class={styles.input}
+                  type="text"
+                  placeholder="Oct 05 - Oct 12"
+                  value={dateLabel()}
+                  readOnly
+                  onClick={() => setShowCalendar(s => !s)}
+                />
+              </div>
+              <Show when={showCalendar()}>
+                <div class={styles.datepickerWrapper}>
+                  <Datepicker />
+                </div>
+              </Show>
+            </div>
+          </>
+        );
+
+      case "Things To Do":
+      case "Coupon & Deals":
+      case "Travel Bundles":
+      default:
+        return (
+          <div class={styles.searchField}>
+            <p class={styles.searchLabel}>Search</p>
+            <div class={styles.inputWrapper}>
+              <span class={`material-symbols-outlined ${styles.inputIcon}`}>search</span>
+              <input 
+                class={styles.input} 
+                type="text" 
+                placeholder="What are you looking for?" 
+                value={formState().location}
+                onInput={(e: InputEvent & { currentTarget: HTMLInputElement }) => handleFormChange("location", e.currentTarget.value)}
+              />
+            </div>
+          </div>
+        );
+    }
+  };
+
   return (
     <div class={styles.wrapper}>
       {/* ── HEADER ── */}
       <header class={styles.header}>
         <div class={styles.headerInner}>
-          {/* Logo */}
-            {/* Navigate Bar */}
-            <NavigateBar/>
-          {/* Auth */}
-          {/* <div class={styles.authButtons}>
-            <button class={styles.btnGhost}>Sign In</button>
-            <button class={styles.btnPrimary}>Create Account</button>
-          </div> */}
+          <NavigationBar />
         </div>
       </header>
 
@@ -120,6 +289,7 @@ const App: Component = () => {
                   <button
                     class={`${styles.searchTab} ${activeTab() === tab.label ? styles.searchTabActive : ""}`}
                     onClick={() => setActiveTab(tab.label)}
+                    type="button"
                   >
                     <span class="material-symbols-outlined">{tab.icon}</span>
                     {tab.label}
@@ -127,45 +297,11 @@ const App: Component = () => {
                 ))}
               </div>
 
-              {/* Inputs */}
+              {/* Inputs - Dynamic based on tab */}
               <div class={styles.searchInputRow}>
-                <div class={styles.searchField}>
-                  <p class={styles.searchLabel}>Location</p>
-                  <div class={styles.inputWrapper}>
-                    <span class={`material-symbols-outlined ${styles.inputIcon}`}>location_on</span>
-                    <input class={styles.input} type="text" placeholder="Where are you going?" />
-                  </div>
-                </div>
+                {renderTabSpecificFields()}
 
-                <div class={styles.searchField}>
-                  <p class={styles.searchLabel}>Dates</p>
-                    <div class={styles.inputWrapper}>
-                      <span class={`material-symbols-outlined ${styles.inputIcon}`}>calendar_month</span>
-
-                      {/* clicking input toggles calendar */}
-                      <input
-                        class={styles.input}
-                        type="text"
-                        placeholder="Oct 05 - Oct 12"
-                        value={dateLabel()}
-                        readOnly
-                        onClick={() => setShowCalendar(s => !s)}
-                      />
-                      {/* Calendar */}
-                  <Calendar/>
-
-                  </div>
-                </div>
-
-                <div class={styles.searchField}>
-                  <p class={styles.searchLabel}>Travelers</p>
-                  <div class={styles.inputWrapper}>
-                    <span class={`material-symbols-outlined ${styles.inputIcon}`}>group</span>
-                    <input class={styles.input} type="text" placeholder="2 Adults, 1 Room" />
-                  </div>
-                </div>
-
-                <button class={styles.searchBtn}>
+                <button type="button" class={styles.searchBtn}>
                   <span class="material-symbols-outlined">search</span>
                   Search
                 </button>
