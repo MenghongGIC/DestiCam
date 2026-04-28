@@ -196,6 +196,7 @@
     left: 0;
     display: flex;
     justify-content: center;
+    padding: 25px;
     
 }
 
@@ -271,7 +272,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    white-space: pre;
 }
 
 .hire_guide_container .box_3{
