@@ -7,7 +7,7 @@ const LoginPage: Component = () => {
 
   return (
     <div class={styles.layoutContainer}>
-      {/* ── HEADER ── */}
+
       <header class={styles.header}>
         <div class={styles.headerBrand}>
           <span class={`material-symbols-outlined ${styles.brandIcon}`}>travel_explore</span>
@@ -22,10 +22,8 @@ const LoginPage: Component = () => {
         </div>
       </header>
 
-      {/* ── MAIN ── */}
       <main class={styles.main}>
         <div class={styles.card}>
-          {/* Logo & Heading */}
           <div class={styles.cardHeader}>
             <div class={styles.cardIconWrap}>
               <span class="material-symbols-outlined">map</span>
@@ -34,9 +32,7 @@ const LoginPage: Component = () => {
             <p class={styles.cardSubtitle}>Sign in to continue your journey</p>
           </div>
 
-          {/* Login Form */}
-          <form class={styles.form} onSubmit={(e) => e.preventDefault()}>
-            {/* Email */}
+          <form class={styles.form} onSubmit={(e: Event) => e.preventDefault()}>
             <div class={styles.fieldGroup}>
               <label class={styles.label}>Email Address</label>
               <input
@@ -70,7 +66,6 @@ const LoginPage: Component = () => {
               </div>
             </div>
 
-            {/* Remember me */}
             <div class={styles.rememberRow}>
               <input class={styles.checkbox} id="remember" type="checkbox" />
               <label class={styles.rememberLabel} for="remember">
@@ -78,7 +73,6 @@ const LoginPage: Component = () => {
               </label>
             </div>
 
-            {/* Submit */}
             <button type="submit" class={styles.submitBtn}>
               <span>Sign In</span>
               <span class="material-symbols-outlined">login</span>
@@ -111,7 +105,6 @@ const LoginPage: Component = () => {
             </button>
           </div>
 
-          {/* Sign Up Footer */}
           <p class={styles.signUpFooter}>
             Don't have an account?{" "}
             <a href="#" class={styles.signUpLink}>Create Account</a>
@@ -119,10 +112,6 @@ const LoginPage: Component = () => {
         </div>
       </main>
 
-      {/* ── FOOTER ── */}
-      <footer class={styles.footer}>
-        <p>© 2024 DestiCam Travel &amp; Booking. All rights reserved.</p>
-      </footer>
     </div>
   );
 };
