@@ -1,8 +1,54 @@
-/* Nav box */
+/* ──── Container ──── */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.frame_1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.logo {
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.account_box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.sign_in_btn {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.sign_up_btn {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.frame_2 {
+  display: flex;
+  width: 100%;
+}
+
+/* ──── Nav box ──── */
 .nav_box {
   display: none;
   align-items: center;
   gap: 2rem;
+  flex: 1;
+  margin: 0 1rem;
 }
 
 @media (min-width: 980px) {
@@ -11,13 +57,14 @@
   }
 }
 
-/* Nav items */
+/* ──── Nav items ──── */
 .nav_item {
   font-size: 0.875rem;
   font-weight: 600;
   color: oklch(var(--bc) / 0.6);
   text-decoration: none;
   transition: color 0.15s;
+  white-space: nowrap;
 }
 
 .nav_item:hover {
@@ -31,4 +78,5 @@
   text-decoration: none;
   border-bottom: 2px solid oklch(var(--p));
   padding-bottom: 0.25rem;
+  white-space: nowrap;
 }
