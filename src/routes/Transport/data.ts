@@ -56,7 +56,7 @@ export const transportData: TransportItem[] = [
     arrivalTime: '08:45',
     duration: '0h 45m',
     price: 199,
-    image: 'https://placehold.co/400x200?text=Cambodia+Angkor+Air',
+    image: '/transport_air_4.jpg',
     date: '2026-03-15'
   },
   {
@@ -112,7 +112,7 @@ export const transportData: TransportItem[] = [
     arrivalTime: '11:15',
     duration: '0h 45m',
     price: 150,
-    image: 'https://placehold.co/400x200?text=Flight+KOS-PNH',
+    image: '/transport_air_4.jpg',
     date: '2026-03-20'
   },
   {
@@ -196,7 +196,7 @@ export const transportData: TransportItem[] = [
     arrivalTime: '15:50',
     duration: '0h 50m',
     price: 180,
-    image: 'https://placehold.co/400x200?text=Cambodia+Airways',
+    image: '/transport_airplane_1.jpg',
     date: '2026-03-15'
   },
   {
@@ -252,7 +252,7 @@ export const transportData: TransportItem[] = [
     arrivalTime: '12:50',
     duration: '0h 50m',
     price: 75,
-    image: 'https://placehold.co/400x200?text=AirAsia',
+    image: 'transport_airplane_2.jpg',
     date: '2026-03-15'
   },
   {
@@ -294,7 +294,7 @@ export const transportData: TransportItem[] = [
     arrivalTime: '15:00',
     duration: '1h 00m',
     price: 165,
-    image: 'https://placehold.co/400x200?text=Flight+REP-KOS',
+    image: 'transport_airplane_3.jpg',
     date: '2026-03-15'
   }
 ];

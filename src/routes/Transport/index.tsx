@@ -199,6 +199,7 @@ export default function TransportPage() {
                   <label class={styles.checkboxLabel}><input type="checkbox" checked /> Mekong Express</label>
                   <label class={styles.checkboxLabel}><input type="checkbox" checked /> Virak Buntham</label>
                   <label class={styles.checkboxLabel}><input type="checkbox" checked /> Cambodia Angkor Air</label>
+                  <label class={styles.checkboxLabel}><input type="checkbox" checked/> J&T</label>
                 </div>
               </Show>
             </div>
