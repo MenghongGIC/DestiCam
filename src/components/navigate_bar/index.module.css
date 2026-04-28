@@ -1,0 +1,34 @@
+/* Nav box */
+.nav_box {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 980px) {
+  .nav_box {
+    display: flex;
+  }
+}
+
+/* Nav items */
+.nav_item {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: oklch(var(--bc) / 0.6);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav_item:hover {
+  color: oklch(var(--p));
+}
+
+.current_nav_item {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: oklch(var(--p));
+  text-decoration: none;
+  border-bottom: 2px solid oklch(var(--p));
+  padding-bottom: 0.25rem;
+}
