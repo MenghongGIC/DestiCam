@@ -24,6 +24,10 @@
   "engines": {
     "node": ">=22"
   },
+<<<<<<< HEAD
   "devDependencies": {
   }
+=======
+  "devDependencies": {}
+>>>>>>> origin/main
 }
