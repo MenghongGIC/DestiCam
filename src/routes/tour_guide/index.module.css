@@ -184,3 +184,106 @@
     width: fit-content;
 
 }
+
+
+
+.hire_guide_container{
+    position: fixed;
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.hire_guide_container .inner_box{
+    background: white;
+    min-width: 50%;
+    min-height: 50%;
+    height: auto;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+}
+
+.hire_guide_container .profile_picture{
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hire_guide_container .box_1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    gap: 12px;
+    flex-direction: column;
+}
+
+
+.hire_guide_container .text_1{
+    font-weight: bold;
+    font-size: 1.25em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.hire_guide_container .text_2{
+    font-weight: normal;
+    font-size: 1.2em;
+    color: gray;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.hire_guide_container .box_2{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 5px;
+}
+
+.hire_guide_container .contact_key{
+    font-weight: bold;
+    font-size: 1.25em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: black;
+}
+
+.hire_guide_container .contact_value{
+    font-weight: normal;
+    font-size: 1em;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    white-space: pre;
+}
+
+.hire_guide_container .box_3{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.hire_guide_container .btn{
+    background: var(--secondary);
+    color: white;
+    width: 100px;
+}

@@ -26,7 +26,7 @@ export default function TourGuide() {
     const [language, set_language] = createSignal<string>("");
 
     const [filtered_data, set_filtered_data] = createSignal<data_type>(data);
-    
+    const [show_hire_guide, set_show_hire_guide] = createSignal<{state: boolean, data_info?: data_info_type}>({state: false});
     
     createEffect(on([search, price, language], () => {
         console.log("A", language());
@@ -49,10 +49,7 @@ export default function TourGuide() {
         onCleanup(() => window.removeEventListener("resize", handler));
     });
 
-
-
-
-    return (
+    return (<>
         <main class={styles.main}>
             <Title>DestiCam - Tour Guide</Title>
             <NavigationBar />
@@ -110,15 +107,16 @@ export default function TourGuide() {
                 <div class={styles.item_container}>
                     <For each={filtered_data()}>
                         {(data_info) => (
-                            <ItemComponent data_info={data_info}/>
+                            <ItemComponent data_info={data_info} set_show_hire_guide={set_show_hire_guide}/>
                         )}
                     </For>
                 </div>
                 
             </div>
+            <HireGuide show={show_hire_guide} set_show={set_show_hire_guide}/>
             
         </main>
-    );
+    </>);
 }
 
 function FilterContainer1({
@@ -244,7 +242,6 @@ function FilterContainer1({
 }
 
 
-
 function FilterContainer2({
     price, set_price,
 
@@ -361,7 +358,13 @@ function FilterContainer2({
 }
 
 
-function ItemComponent({data_info}: {data_info:  data_info_type}){
+function ItemComponent({
+    data_info,
+    set_show_hire_guide
+}: {
+    data_info:  data_info_type,
+    set_show_hire_guide: Setter<{state: boolean, data_info?: data_info_type}>
+}){
     return (
         <div class={`${styles.item_box} animate__animated animate__fadeIn`}>
             <img class={styles.profile_picture} src="/tour_guide_profile_picture.jpg"/>
@@ -382,10 +385,66 @@ function ItemComponent({data_info}: {data_info:  data_info_type}){
             </div>
             <div class={styles.info_box_2}>
                 <span>${data_info.price_per_day} per day</span>
-                <button class={`btn btn-primary ${styles.hire_btn}`}>
+                <button class={`btn btn-primary ${styles.hire_btn}`}
+                    on:click={() => set_show_hire_guide({state: true, data_info: data_info})}
+                >
                     Hire Guide
                 </button>
             </div>
         </div>
     )
+}
+
+function HireGuide({
+    show,
+    set_show,
+}:{
+    show:Accessor<{state: boolean, data_info?: data_info_type}>,
+    set_show: Setter<{state: boolean, data_info?: data_info_type}>
+}){
+    
+    return (<>
+        {show().state &&
+            <main class={styles.hire_guide_container}
+                on:click={()=>set_show({...show(), state: false,})}
+            >
+                <div class={styles.inner_box}
+                    on:click={(e: Event) => e.stopPropagation()}
+                >
+                    <div class={styles.box_1}>
+                        <img class={styles.profile_picture}
+                            src={show().data_info?.profile_picture||""}
+                        />
+                        <span class={styles.text_1}>{show().data_info?.name}</span>
+                        <span class={styles.text_2}>${show().data_info?.price_per_day} per day</span>
+                        <span class={styles.text_2}>{show().data_info?.short_bio}</span>
+
+                    </div>
+
+                    <div class={styles.box_2}>
+                        <For each={Object.keys(show().data_info?.contact||{})}>
+                            {(key) => (
+                                <div class={styles.item_box}>
+                                    <span class={styles.contact_key}>{key}:&nbsp;<span class={styles.contact_value}>{show().data_info?.contact?.[key]||""}</span></span>
+                                </div>
+                            )}
+                        </For>
+                        
+
+                        
+                    </div>
+
+                    <div class={styles.box_3}>
+                        <button class={`btn btn-primary ${styles.btn}`}
+                            on:click={()=>set_show({...show(), state: false,})}
+                        >DONE</button>
+                    </div>
+
+                    
+                </div>
+
+            </main>
+        }
+        
+    </>)
 }
