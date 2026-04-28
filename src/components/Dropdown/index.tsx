@@ -94,6 +94,8 @@ export default function Dropdown({
                     ><a
                         on:click={()=>{
                             setCurrentIndex(-1);
+                            onChange({index: -1, id: -1, value: ""});
+
                         }}
                     >None</a></li>
                 }
