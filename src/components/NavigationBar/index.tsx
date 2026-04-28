@@ -99,10 +99,17 @@ export default function NavigationBar() {
                 }
                 <div class={styles.account_box}>
                     <button class={`btn btn-ghost ${styles.sign_in_btn}`}
+                        on:click={() => {
+                            navigate("/login");
+                        }}
                     >
                         Sign In
                     </button>
-                    <button class={`btn btn-neutral ${styles.sign_up_btn}`}>
+                    <button class={`btn btn-neutral ${styles.sign_up_btn}`}
+                        on:click={() => {
+                            navigate("/sign_up");
+                        }}
+                    >
                         Sign Up
                     </button>
                 </div>
