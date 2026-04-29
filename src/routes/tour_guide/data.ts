@@ -1,16 +1,17 @@
-export type data_info_type= {
-    id: number|string,
-    profile_picture: string,
-    name: string
-    languages_spoken: string[],
-    short_bio: string,
-    rating: number,
-    price_per_day: number
+export type data_info_type = {
+  id: number | string,
+  profile_picture: string,
+  name: string,
+  languages_spoken: string[],
+  short_bio: string,
+  rating: number,
+  price_per_day: number,
+  contact: { [key: string]: string }
 };
 
 export type data_type = data_info_type[];
 
-export const data:data_type = [
+export const data: data_type = [
   {
     id: 1,
     profile_picture: "/tour_guide_profile_picture.jpg",
@@ -18,186 +19,298 @@ export const data:data_type = [
     languages_spoken: ["Khmer", "English"],
     short_bio: "Friendly guide from Phnom Penh specializing in cultural tours.",
     rating: 4.7,
-    price_per_day: 35
+    price_per_day: 35,
+    contact: {
+      Telephone: "09672314",
+      Telegram: "02134567",
+      Email: "sokchea_phan1@gmail.com",
+      Facebook: "facebook.com/sokchea_phan"
+    }
   },
   {
     id: 2,
     profile_picture: "/tour_guide_profile_picture.jpg",
     name: "Dara Kim",
     languages_spoken: ["Khmer", "French", "English"],
-    short_bio: "Experienced in guiding visitors through Angkor Wat and Siem Reap.",
-    rating: 4.9,
-    price_per_day: 50
+    short_bio: "Expert in Angkor Wat history and architecture.",
+    rating: 4.8,
+    price_per_day: 40,
+    contact: {
+      Telephone: "09783421",
+      Telegram: "02245678",
+      Email: "dara_kim2@gmail.com",
+      Facebook: "facebook.com/dara_kim"
+    }
   },
   {
     id: 3,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Sreyneang Chhun",
-    languages_spoken: ["Khmer", "English"],
-    short_bio: "Specializes in food tours and local market experiences.",
+    name: "Sophal Chan",
+    languages_spoken: ["Khmer", "Chinese"],
+    short_bio: "Specializes in culinary tours around Siem Reap.",
     rating: 4.6,
-    price_per_day: 30
+    price_per_day: 32,
+    contact: {
+      Telephone: "09512345",
+      Telegram: "02398765",
+      Email: "sophal_chan3@gmail.com",
+      Facebook: "facebook.com/sophal_chan"
+    }
   },
   {
     id: 4,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Vuthy Chan",
-    languages_spoken: ["Khmer", "Chinese", "English"],
-    short_bio: "Expert in Cambodian history and temple architecture.",
-    rating: 4.8,
-    price_per_day: 45
+    name: "Vanna Ly",
+    languages_spoken: ["Khmer", "Japanese", "English"],
+    short_bio: "Knowledgeable guide for temple and countryside tours.",
+    rating: 4.9,
+    price_per_day: 50,
+    contact: {
+      Telephone: "09876543",
+      Telegram: "02456789",
+      Email: "vanna_ly4@gmail.com",
+      Facebook: "facebook.com/vanna_ly"
+    }
   },
   {
     id: 5,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Malis Sok",
+    name: "Sreyneang Touch",
     languages_spoken: ["Khmer", "English"],
-    short_bio: "Passionate about eco-tours and rural village life.",
+    short_bio: "Friendly guide for Phnom Penh nightlife and local culture.",
     rating: 4.5,
-    price_per_day: 28
+    price_per_day: 30,
+    contact: {
+      Telephone: "09345678",
+      Telegram: "02567890",
+      Email: "sreyneang_touch5@gmail.com",
+      Facebook: "facebook.com/sreyneang_touch"
+    }
   },
   {
     id: 6,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Rith Dara",
-    languages_spoken: ["Khmer", "Japanese", "English"],
-    short_bio: "Guides Japanese tourists with deep cultural insights.",
-    rating: 4.9,
-    price_per_day: 55
+    name: "Pisey Chum",
+    languages_spoken: ["Khmer", "English", "French"],
+    short_bio: "Specialist in eco-tours and rural experiences.",
+    rating: 4.4,
+    price_per_day: 28,
+    contact: {
+      Telephone: "09234567",
+      Telegram: "02678901",
+      Email: "pisey_chum6@gmail.com",
+      Facebook: "facebook.com/pisey_chum"
+    }
   },
   {
     id: 7,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Sophea Lim",
+    name: "Makara Heng",
     languages_spoken: ["Khmer", "English"],
-    short_bio: "Specializes in Phnom Penh city tours and museums.",
-    rating: 4.7,
-    price_per_day: 40
+    short_bio: "Focuses on adventure tours and trekking.",
+    rating: 4.6,
+    price_per_day: 38,
+    contact: {
+      Telephone: "09123456",
+      Telegram: "02789012",
+      Email: "makara_heng7@gmail.com",
+      Facebook: "facebook.com/makara_heng"
+    }
   },
   {
     id: 8,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Chanthy Mao",
-    languages_spoken: ["Khmer", "English"],
-    short_bio: "Focuses on adventure tours and countryside biking.",
-    rating: 4.6,
-    price_per_day: 33
+    name: "Chantha Ouk",
+    languages_spoken: ["Khmer", "English", "Thai"],
+    short_bio: "Guides visitors through Cambodia’s border regions.",
+    rating: 4.3,
+    price_per_day: 27,
+    contact: {
+      Telephone: "09098765",
+      Telegram: "02890123",
+      Email: "chantha_ouk8@gmail.com",
+      Facebook: "facebook.com/chantha_ouk"
+    }
   },
   {
     id: 9,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Sokha Heng",
-    languages_spoken: ["Khmer", "English", "German"],
-    short_bio: "Provides temple tours with historical storytelling.",
-    rating: 4.8,
-    price_per_day: 48
+    name: "Rith Sok",
+    languages_spoken: ["Khmer", "English", "Korean"],
+    short_bio: "Specializes in modern city tours.",
+    rating: 4.5,
+    price_per_day: 33,
+    contact: {
+      Telephone: "08987654",
+      Telegram: "02901234",
+      Email: "rith_sok9@gmail.com",
+      Facebook: "facebook.com/rith_sok"
+    }
   },
   {
     id: 10,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Pisey Nhem",
+    name: "Borey Sun",
     languages_spoken: ["Khmer", "English"],
-    short_bio: "Expert in guiding floating village tours in Tonle Sap.",
+    short_bio: "Expert in Cambodian wildlife and eco-parks.",
     rating: 4.7,
-    price_per_day: 37
+    price_per_day: 42,
+    contact: {
+      Telephone: "08876543",
+      Telegram: "03012345",
+      Email: "borey_sun10@gmail.com",
+      Facebook: "facebook.com/borey_sun"
+    }
   },
   {
     id: 11,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Sokun Chea",
-    languages_spoken: ["Khmer", "English"],
-    short_bio: "Nature lover guiding eco-trails in Kampot.",
-    rating: 4.5,
-    price_per_day: 32
+    name: "Chenda Mao",
+    languages_spoken: ["Khmer", "English", "French"],
+    short_bio: "Focuses on art and museum tours.",
+    rating: 4.6,
+    price_per_day: 36,
+    contact: {
+      Telephone: "08765432",
+      Telegram: "03123456",
+      Email: "chenda_mao11@gmail.com",
+      Facebook: "facebook.com/chenda_mao"
+    }
   },
   {
     id: 12,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Mony Keo",
-    languages_spoken: ["Khmer", "English", "Thai"],
-    short_bio: "Specializes in cross-border tours and regional culture.",
-    rating: 4.6,
-    price_per_day: 42
+    name: "Sokha Yem",
+    languages_spoken: ["Khmer", "English"],
+    short_bio: "Friendly countryside guide.",
+    rating: 4.4,
+    price_per_day: 29,
+    contact: {
+      Telephone: "08654321",
+      Telegram: "03234567",
+      Email: "sokha_yem12@gmail.com",
+      Facebook: "facebook.com/sokha_yem"
+    }
   },
   {
     id: 13,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Sreymao Touch",
-    languages_spoken: ["Khmer", "English"],
-    short_bio: "Focuses on art galleries and cultural performances.",
-    rating: 4.7,
-    price_per_day: 36
+    name: "Vichea Lim",
+    languages_spoken: ["Khmer", "English", "Chinese"],
+    short_bio: "Specializes in shopping and market tours.",
+    rating: 4.5,
+    price_per_day: 34,
+    contact: {
+      Telephone: "08543210",
+      Telegram: "03345678",
+      Email: "vichea_lim13@gmail.com",
+      Facebook: "facebook.com/vichea_lim"
+    }
   },
   {
     id: 14,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Visal Ouk",
+    name: "Sokny Keo",
     languages_spoken: ["Khmer", "English"],
-    short_bio: "Adventure guide for trekking in Mondulkiri.",
+    short_bio: "Expert in Phnom Penh’s colonial history.",
     rating: 4.8,
-    price_per_day: 44
+    price_per_day: 45,
+    contact: {
+      Telephone: "08432109",
+      Telegram: "03456789",
+      Email: "sokny_keo14@gmail.com",
+      Facebook: "facebook.com/sokny_keo"
+    }
   },
   {
     id: 15,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Sokny Yem",
-    languages_spoken: ["Khmer", "English"],
-    short_bio: "Specializes in culinary tours and cooking classes.",
-    rating: 4.6,
-    price_per_day: 38
+    name: "Sophea Long",
+    languages_spoken: ["Khmer", "English", "Japanese"],
+    short_bio: "Specializes in temple tours for Japanese visitors.",
+    rating: 4.7,
+    price_per_day: 41,
+    contact: {
+      Telephone: "08321098",
+      Telegram: "03567890",
+      Email: "sophea_long15@gmail.com",
+      Facebook: "facebook.com/sophea_long"
+    }
   },
   {
     id: 16,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Chetra Sun",
+    name: "Kanha Phorn",
     languages_spoken: ["Khmer", "English"],
-    short_bio: "Expert in Angkor Wat sunrise tours.",
-    rating: 4.9,
-    price_per_day: 52
+    short_bio: "Friendly guide for family tours.",
+    rating: 4.3,
+    price_per_day: 26,
+    contact: {
+      Telephone: "08210987",
+      Telegram: "03678901",
+      Email: "kanha_phorn16@gmail.com",
+      Facebook: "facebook.com/kanha_phorn"
+    }
   },
   {
     id: 17,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Sreyroth Khiev",
-    languages_spoken: ["Khmer", "English"],
-    short_bio: "Focuses on handicraft villages and local artisans.",
-    rating: 4.5,
-    price_per_day: 29
+    name: "Rina Sok",
+    languages_spoken: ["Khmer", "English", "French"],
+    short_bio: "Specializes in cultural heritage tours.",
+    rating: 4.6,
+    price_per_day: 37,
+    contact: {
+      Telephone: "08109876",
+      Telegram: "03789012",
+      Email: "rina_sok17@gmail.com",
+      Facebook: "facebook.com/rina_sok"
+    }
   },
   {
     id: 18,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Vanna Long",
-    languages_spoken: ["Khmer", "English"],
-    short_bio: "Guides tours in Battambang with cultural highlights.",
-    rating: 4.7,
-    price_per_day: 39
+    name: "Sokun Dara",
+    languages_spoken: ["Khmer", "English", "Chinese"],
+    short_bio: "Expert in temple and market tours.",
+    rating: 4.5,
+    price_per_day: 33,
+    contact: {
+      Telephone: "08098765",
+      Telegram: "03890123",
+      Email: "sokun_dara18@gmail.com",
+      Facebook: "facebook.com/sokun_dara"
+    }
   },
   {
     id: 19,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Sokheng Phou",
+    name: "Sokhom Chhay",
     languages_spoken: ["Khmer", "English"],
-    short_bio: "Specializes in wildlife tours and bird watching.",
-    rating: 4.6,
-    price_per_day: 34
+    short_bio: "Focuses on eco-friendly countryside tours.",
+    rating: 4.4,
+    price_per_day: 30,
+    contact: {
+      Telephone: "07987654",
+      Telegram: "03901234",
+      Email: "sokhom_chhay19@gmail.com",
+      Facebook: "facebook.com/sokhom_chhay"
+    }
   },
   {
     id: 20,
     profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Chanra Ith",
-    languages_spoken: ["Khmer", "English"],
-    short_bio: "Focuses on historical tours in Oudong.",
+    name: "Sokunthea Meas",
+    languages_spoken: ["Khmer", "English", "French"],
+    short_bio: "Specializes in art and cultural tours.",
     rating: 4.7,
-    price_per_day: 41
-  },
-  {
-    id: 21,
-    profile_picture: "/tour_guide_profile_picture.jpg",
-    name: "Sokly Men",
-    languages_spoken: ["Khmer", "English"],
-    short_bio: "Offers personalized family-friendly tours in Siem Reap.",
-    rating: 4.8,
-    price_per_day: 46
+    price_per_day: 39,
+    contact: {
+      Telephone: "07876543",
+      Telegram: "04012345",
+      Email: "sokunthea_meas20@gmail.com",
+      Facebook: "facebook.com/sokunthea_meas"
+    }
   }
+
 ];

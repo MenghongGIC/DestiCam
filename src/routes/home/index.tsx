@@ -1,4 +1,4 @@
-import { Title } from "@solidjs/meta";
+import { Title, Link } from "@solidjs/meta";
 import { Component, createSignal, Show } from "solid-js";
 import styles from "./index.module.css";
 
@@ -8,6 +8,7 @@ import Footer from "~/components/footer/footer";
 import Logo from "~/components/logo/logo";
 import Card from "~/components/card/card";
 import Button from "~/components/button/button";
+
 
 interface TabConfig {
   label: string;
@@ -251,7 +252,8 @@ const App: Component = () => {
     }
   };
 
-  return (
+  return (<>
+    <Link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
     <div class={styles.wrapper}>
       {/* ── HEADER ── */}
       <header class={styles.header}>
@@ -372,7 +374,7 @@ const App: Component = () => {
       </main>
       <Footer />
     </div>
-  );
+  </>);
 };
 
 export default App;

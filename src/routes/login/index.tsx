@@ -1,11 +1,13 @@
-import { Title } from "@solidjs/meta";
+import { Title, Link } from "@solidjs/meta";
 import { Component, createSignal } from "solid-js";
 import styles from "./index.module.css";
 
 const LoginPage: Component = () => {
   const [showPassword, setShowPassword] = createSignal(false);
 
-  return (
+  return (<>
+    <Link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+  
     <div class={styles.layoutContainer}>
 
       <header class={styles.header}>
@@ -113,7 +115,7 @@ const LoginPage: Component = () => {
       </main>
 
     </div>
-  );
+  </>);
 };
 
 export default LoginPage;

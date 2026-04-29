@@ -1,0 +1,300 @@
+export interface TransportItem {
+  id: string;
+  type: 'BUS' | 'Flight';
+  company: string;
+  title: string;
+  from: string;
+  to: string;
+  departureTime: string;
+  arrivalTime: string;
+  duration: string;
+  price: number;
+  image: string;
+  date: string;
+  tripsPerDay?: number;
+}
+
+export const transportData: TransportItem[] = [
+  {
+    id: '1',
+    type: 'BUS',
+    company: 'Giant Ibis',
+    title: 'Universe Luxury',
+    from: 'Siem Reap',
+    to: 'Phnom Penh',
+    departureTime: '08:45',
+    arrivalTime: '14:45',
+    duration: '6h 00m',
+    price: 17,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-17',
+    tripsPerDay: 3
+  },
+  {
+    id: '2',
+    type: 'BUS',
+    company: 'Giant Ibis',
+    title: 'Exclusive VIP Seater',
+    from: 'Siem Reap',
+    to: 'Phnom Penh',
+    departureTime: '08:45',
+    arrivalTime: '12:45',
+    duration: '4h 00m',
+    price: 25,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-17',
+    tripsPerDay: 3
+  },
+  {
+    id: '3',
+    type: 'Flight',
+    company: 'Cambodia Angkor Air',
+    title: 'Cambodia Angkor Air',
+    from: 'Siem Reap',
+    to: 'Phnom Penh',
+    departureTime: '08:00',
+    arrivalTime: '08:45',
+    duration: '0h 45m',
+    price: 199,
+    image: 'https://placehold.co/400x200?text=Cambodia+Angkor+Air',
+    date: '2026-03-15'
+  },
+  {
+    id: '4',
+    type: 'BUS',
+    company: 'Mekong Express',
+    title: 'Standard Bus',
+    from: 'Phnom Penh',
+    to: 'Siem Reap',
+    departureTime: '07:30',
+    arrivalTime: '13:30',
+    duration: '6h 00m',
+    price: 15,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-17'
+  },
+  {
+    id: '5',
+    type: 'BUS',
+    company: 'Virak Buntham',
+    title: 'Luxury Sleeping Bus',
+    from: 'Phnom Penh',
+    to: 'Sihanoukville',
+    departureTime: '22:00',
+    arrivalTime: '03:00',
+    duration: '5h 00m',
+    price: 18,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-18'
+  },
+  {
+    id: '6',
+    type: 'BUS',
+    company: 'Giant Ibis',
+    title: 'VIP Van',
+    from: 'Phnom Penh',
+    to: 'Kampot',
+    departureTime: '08:00',
+    arrivalTime: '11:00',
+    duration: '3h 00m',
+    price: 12,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-19'
+  },
+  {
+    id: '7',
+    type: 'Flight',
+    company: 'Cambodia Angkor Air',
+    title: 'Cambodia Angkor Air',
+    from: 'Phnom Penh',
+    to: 'Sihanoukville',
+    departureTime: '10:30',
+    arrivalTime: '11:15',
+    duration: '0h 45m',
+    price: 150,
+    image: 'https://placehold.co/400x200?text=Flight+KOS-PNH',
+    date: '2026-03-20'
+  },
+  {
+    id: '8',
+    type: 'BUS',
+    company: 'Larryta Express',
+    title: 'VIP Ford Transit',
+    from: 'Siem Reap',
+    to: 'Battambang',
+    departureTime: '08:00',
+    arrivalTime: '11:00',
+    duration: '3h 00m',
+    price: 10,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-21'
+  },
+  {
+    id: '9',
+    type: 'BUS',
+    company: 'Mekong Express',
+    title: 'Standard Bus',
+    from: 'Battambang',
+    to: 'Phnom Penh',
+    departureTime: '07:00',
+    arrivalTime: '12:00',
+    duration: '5h 00m',
+    price: 14,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-22'
+  },
+  {
+    id: '10',
+    type: 'BUS',
+    company: 'Virak Buntham',
+    title: 'Hotel Bus',
+    from: 'Siem Reap',
+    to: 'Sihanoukville',
+    departureTime: '19:00',
+    arrivalTime: '06:00',
+    duration: '11h 00m',
+    price: 22,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-23'
+  },
+  {
+    id: '11',
+    type: 'BUS',
+    company: 'Giant Ibis',
+    title: 'Universe Luxury',
+    from: 'Phnom Penh',
+    to: 'Siem Reap',
+    departureTime: '12:30',
+    arrivalTime: '18:30',
+    duration: '6h 00m',
+    price: 17,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-17'
+  },
+  {
+    id: '12',
+    type: 'BUS',
+    company: 'Giant Ibis',
+    title: 'VIP Van',
+    from: 'Sihanoukville',
+    to: 'Phnom Penh',
+    departureTime: '09:00',
+    arrivalTime: '12:00',
+    duration: '3h 00m',
+    price: 13,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-18'
+  },
+  {
+    id: '13',
+    type: 'Flight',
+    company: 'Cambodia Airways',
+    title: 'Cambodia Airways',
+    from: 'Phnom Penh',
+    to: 'Siem Reap',
+    departureTime: '15:00',
+    arrivalTime: '15:50',
+    duration: '0h 50m',
+    price: 180,
+    image: 'https://placehold.co/400x200?text=Cambodia+Airways',
+    date: '2026-03-15'
+  },
+  {
+    id: '14',
+    type: 'BUS',
+    company: 'Virak Buntham',
+    title: 'Luxury Sleeping Bus',
+    from: 'Phnom Penh',
+    to: 'Poipet',
+    departureTime: '21:00',
+    arrivalTime: '05:00',
+    duration: '8h 00m',
+    price: 16,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-24'
+  },
+  {
+    id: '15',
+    type: 'BUS',
+    company: 'Mekong Express',
+    title: 'Standard Bus',
+    from: 'Kampot',
+    to: 'Phnom Penh',
+    departureTime: '08:30',
+    arrivalTime: '11:30',
+    duration: '3h 00m',
+    price: 11,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-25'
+  },
+  {
+    id: '16',
+    type: 'BUS',
+    company: 'Giant Ibis',
+    title: 'Universe Luxury',
+    from: 'Siem Reap',
+    to: 'Bangkok',
+    departureTime: '08:00',
+    arrivalTime: '16:00',
+    duration: '8h 00m',
+    price: 32,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-26'
+  },
+  {
+    id: '17',
+    type: 'Flight',
+    company: 'AirAsia',
+    title: 'AirAsia',
+    from: 'Phnom Penh',
+    to: 'Siem Reap',
+    departureTime: '12:00',
+    arrivalTime: '12:50',
+    duration: '0h 50m',
+    price: 75,
+    image: 'https://placehold.co/400x200?text=AirAsia',
+    date: '2026-03-15'
+  },
+  {
+    id: '18',
+    type: 'BUS',
+    company: 'Virak Buntham',
+    title: 'VIP Van',
+    from: 'Phnom Penh',
+    to: 'Mondulkiri',
+    departureTime: '07:30',
+    arrivalTime: '13:30',
+    duration: '6h 00m',
+    price: 15,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-27'
+  },
+  {
+    id: '19',
+    type: 'BUS',
+    company: 'Giant Ibis',
+    title: 'Exclusive VIP Seater',
+    from: 'Siem Reap',
+    to: 'Phnom Penh',
+    departureTime: '13:45',
+    arrivalTime: '17:45',
+    duration: '4h 00m',
+    price: 25,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-17'
+  },
+  {
+    id: '20',
+    type: 'Flight',
+    company: 'Cambodia Angkor Air',
+    title: 'Cambodia Angkor Air',
+    from: 'Siem Reap',
+    to: 'Sihanoukville',
+    departureTime: '14:00',
+    arrivalTime: '15:00',
+    duration: '1h 00m',
+    price: 165,
+    image: 'https://placehold.co/400x200?text=Flight+REP-KOS',
+    date: '2026-03-15'
+  }
+];

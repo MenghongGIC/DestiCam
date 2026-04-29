@@ -2,6 +2,7 @@
 
 Everything you need to build and deploy Solid project, powered by [solid-start](https://start.solidjs.com);
 
+Demo: https://desticam.up.railway.app
 
 ## Installation
 
