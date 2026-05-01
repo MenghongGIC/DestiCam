@@ -28,7 +28,7 @@ const NAV_ITEM_DATA:{title:string, path:string}[] = [
     },
     {
         title:"Travel Bundle",
-        path: "/travel_bundle"
+        path: "/travelbundle"
     },
 ];
 

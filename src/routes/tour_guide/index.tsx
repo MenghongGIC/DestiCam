@@ -2,7 +2,8 @@ import { Title } from "@solidjs/meta";
 import { For, onMount, createSignal, onCleanup, on, createEffect } from "solid-js";
 import type { Setter, Accessor } from "solid-js";
 
-import styles from "./index.module.css";
+import { Title } from "@solidjs/meta";
+import { For, onMount, createSignal, onCleanup } from "solid-js";
 
 // Components
 import NavigationBar from "~/components/NavigationBar";
@@ -15,10 +16,10 @@ import type { data_info_type, data_type } from "./data";
 // Data
 import { data } from "./data";
 
+import styles from "./index.module.css";
+
 export default function TourGuide() {
-
     const [innerWidth, setInnerWidth] = createSignal(0);
-
     const [is_show_more_filter, set_is_show_more_filter] = createSignal(false);
 
     const [search, set_search] = createSignal<string>("");
@@ -54,11 +55,7 @@ export default function TourGuide() {
             <Title>DestiCam - Tour Guide</Title>
             <NavigationBar />
 
-            <FilterContainer1
-                search={search}
-                set_search={set_search}
-                set_language={set_language}
-            />
+            <FilterContainer1/>
             {innerWidth() < 800 && 
                 <div class={styles.show_more_btn_container}>
                     <button class={`btn btn-neutral ${styles.show_more_btn}`}
@@ -86,26 +83,20 @@ export default function TourGuide() {
             {(is_show_more_filter() && innerWidth() < 800) && 
                 <>
                     <div class="divider"/>
-                    <FilterContainer2
-                        price={price}
-                        set_price={set_price}
-                    />
+                    <FilterContainer2/>
                     <div class="divider"/>
                 </>
             }
 
             <div class={styles.body_container}>
                 {innerWidth() >= 800 && <>
-                    <FilterContainer2
-                        price={price}
-                        set_price={set_price}
-                    />
+                    <FilterContainer2/>
                     <div class="divider divider-horizontal"/>
                 </>}
 
                 
                 <div class={styles.item_container}>
-                    <For each={filtered_data()}>
+                    <For each={data}>
                         {(data_info) => (
                             <ItemComponent data_info={data_info} set_show_hire_guide={set_show_hire_guide}/>
                         )}
@@ -119,122 +110,89 @@ export default function TourGuide() {
     </>);
 }
 
-function FilterContainer1({
-    search, set_search,
-    set_language,
-
-}:{
-    search: Accessor<string>,
-    set_search: Setter<string>,
-    set_language: Setter<string>
-}){
+function FilterContainer1(){
 
     return (<>
         <div class={styles.filter_container_1}>
-            <div class={styles.box}>
-                <Dropdown
-                    label="Location"
-                    label_class={styles.dropdown_label}
-                    dropdown_class={styles.dropdown}
-                    
-                    data={[
-                        {
-                            id: 1,
-                            value: "Phnom Penh"
-                        },
-                        {
-                            id: 2,
-                            value: "Siem Reap"
-                        }
-                    ]}
-                />
-            
+            <Dropdown
+                label="Location"
+                label_class={styles.dropdown_label}
+                dropdown_class={styles.dropdown}
+                onChange={(e) => {
+                    console.log(e)
+                }}
+                data={[
+                    {
+                        id: 1,
+                        value: "Phnom Penh"
+                    },
+                    {
+                        id: 2,
+                        value: "Siem Reap"
+                    }
+                ]}
+            />
 
-                <Dropdown
-                    label="Language"
-                    label_class={styles.dropdown_label}
-                    dropdown_class={styles.dropdown}
-                    onChange={(e) => {
-                        console.log("p", e.value?.toString() ?? "");
-                        set_language(e.value?.toString() ?? "");
-                    }}
-                    data={[
-                        {
-                            id: 1,
-                            value: "English"
-                        },
-                        {
-                            id: 2,
-                            value: "French"
-                        },
-                        {
-                            id: 3,
-                            value: "Khmer"
-                        },
-                    ]}
-                />
-                <Datepicker
-                    label="Available Date"
-                />
+            <Dropdown
+                label="Language"
+                label_class={styles.dropdown_label}
+                dropdown_class={styles.dropdown}
+                onChange={(e) => {
+                    console.log(e)
+                }}
+                data={[
+                    {
+                        id: 1,
+                        value: "English"
+                    },
+                    {
+                        id: 2,
+                        value: "French"
+                    },
+                    {
+                        id: 3,
+                        value: "Khmer"
+                    },
+                ]}
+            />
+            <Datepicker
+                label="Available Date"
+            />
 
-                <Dropdown
-                    label="Number of Travellers"
-                    label_class={styles.dropdown_label}
-                    dropdown_class={styles.dropdown}
-                    onChange={(e) => {
-                        console.log(e)
-                    }}
-                    data={[
-                        {
-                            id: 1,
-                            value: "1"
-                        },
-                        {
-                            id: 2,
-                            value: "2"
-                        },
-                        {
-                            id: 3,
-                            value: "3"
-                        },
-                        {
-                            id: 4,
-                            value: "4"
-                        },
-                        {
-                            id: 5,
-                            value: "4+"
-                        },
-                    ]}
-                />
-            </div>
-            <div class={styles.box}>
-                <label class={`input ${styles.search_input}`}>
-                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <g
-                        stroke-linejoin="round"
-                        stroke-linecap="round"
-                        stroke-width="2.5"
-                        fill="none"
-                        stroke="currentColor"
-                        >
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.3-4.3"></path>
-                        </g>
-                    </svg>
-                    <input type="search" required placeholder="Search" 
-                        value={search()}
-                        onInput={(e: any) => {
-                            set_search(e.target.value)
-                            console.log("hi");
-                        }}
-                    />
-                </label>
-                <button 
-                    class={`btn btn-neutral ${styles.search_btn}`}
-                >Search</button>
-            </div>
+            <Dropdown
+                label="Number of Travellers"
+                label_class={styles.dropdown_label}
+                dropdown_class={styles.dropdown}
+                onChange={(e) => {
+                    console.log(e)
+                }}
+                data={[
+                    {
+                        id: 1,
+                        value: "1"
+                    },
+                    {
+                        id: 2,
+                        value: "2"
+                    },
+                    {
+                        id: 3,
+                        value: "3"
+                    },
+                    {
+                        id: 4,
+                        value: "4"
+                    },
+                    {
+                        id: 5,
+                        value: "4+"
+                    },
+                ]}
+            />
             
+            <button 
+                class={`btn btn-neutral ${styles.search_btn}`}
+            >Search</button>
         
             
         </div>
@@ -258,30 +216,17 @@ function FilterContainer2({
                 <div class={styles.item_box}>
                     <div class={styles.input_box}>
                         <label class={styles.input_label} for="price_from">From: </label>
-                        <input  name="price_from" type="text" placeholder="$0" class={`input input-neutral ${styles.input}`} 
-                            value={price().from}
-                            onInput={(e: any) => {
-                                const value = parseFloat(e.target.value);
-                                console.log(value);
-                                set_price({...price(), from: value})
-                            }}
-                        />
+                        <input  name="price_from" type="text" placeholder="$0" class={`input input-neutral ${styles.input}`} />
                     </div>
 
                     <div class={styles.input_box}>
                         <label class={styles.input_label} for="price_to">To: </label>
-                        <input name="price_to" type="text" placeholder="$0" class={`input input-neutral ${styles.input}`} 
-                            value={price().to}
-                            onInput={(e: any) => {
-                                const value = parseFloat(e.target.value);
-                                console.log(value);
-                                set_price({...price(), to: value})
-                            }}
-                        />
+                        <input name="price_to" type="text" placeholder="$1000" class={`input input-neutral ${styles.input}`} />
                     </div>
                 </div>
             </div>
             <div class="divider"/>
+
             
             <div class={styles.box}>
                 <span class={styles.section_label}>Years of Experience</span>
