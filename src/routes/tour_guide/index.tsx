@@ -420,6 +420,7 @@ function HireGuide({
                         <span class={styles.text_2}>{show().data_info?.short_bio}</span>
 
                     </div>
+                    <div class="divider"/>
 
                     <div class={styles.box_2}>
                         <For each={Object.keys(show().data_info?.contact||{})}>
