@@ -1,0 +1,220 @@
+.page {
+  padding: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+
+.hero {
+  margin-top: 30px;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+  color: var(--text-dark);
+}
+
+.hero p {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Section */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sectionHeader h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-dark);
+}
+
+.viewAll {
+  color: var(--primary);
+  font-size: 0.875rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.viewAll:hover {
+  text-decoration: underline;
+}
+
+/* Bundle Grid */
+.bundleGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .bundleGrid {
+    grid-template-columns: 1fr;
+  }
+  .bundleCardImg{
+    height: 200px;
+  }
+}
+
+.bundleCard {
+  border: 2px solid transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bundleCard:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.bundleCard.selected {
+  border-color: var(--primary);
+}
+
+.bundleCard img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.bundleBody {
+  padding: 0.85rem 1rem;
+}
+
+.bundleTitle {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+  color: var(--text-dark);
+}
+
+.bundleDuration {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.bundleHighlights {
+  font-size: 0.78rem;
+  padding-left: 1.1rem;
+  margin: 0 0 0.75rem;
+  color: #374151;
+  line-height: 1.7;
+}
+
+.bundleActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btnOutline {
+  flex: 1;
+  padding: 0.4rem 0;
+  border: 1.5px solid var(--primary);
+  background: white;
+  color: var(--primary);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btnOutline:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.btnPrimary {
+  flex: 1;
+  padding: 0.4rem 0;
+  border: none;
+  background: var(--primary);
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: opacity 0.15s;
+}
+
+.btnPrimary:hover {
+  opacity: 0.88;
+}
+
+
+.vibeSection h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  color: var(--text-dark);
+}
+
+.vibeSection p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin: 0 0 1.25rem;
+}
+
+.vibeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .vibeGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.vibeCard {
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: white;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.vibeCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.13);
+}
+
+.vibeCard img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.vibeInfo {
+  padding: 0.75rem 1rem;
+}
+
+.vibeLabel {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+.vibeSub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+}
