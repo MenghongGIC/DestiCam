@@ -41,7 +41,7 @@ export const transportData: TransportItem[] = [
     arrivalTime: '12:45',
     duration: '4h 00m',
     price: 25,
-    image: '/transport_bus_1.jpg',
+    image: '/transport_bus_2.jpg',
     date: '2026-03-17',
     tripsPerDay: 3
   },
@@ -56,7 +56,7 @@ export const transportData: TransportItem[] = [
     arrivalTime: '08:45',
     duration: '0h 45m',
     price: 199,
-    image: 'https://placehold.co/400x200?text=Cambodia+Angkor+Air',
+    image: '/transport_air_1.jpg',
     date: '2026-03-15'
   },
   {
@@ -70,7 +70,7 @@ export const transportData: TransportItem[] = [
     arrivalTime: '13:30',
     duration: '6h 00m',
     price: 15,
-    image: '/transport_bus_1.jpg',
+    image: '/transport_bus_2.jpg',
     date: '2026-03-17'
   },
   {
@@ -112,7 +112,7 @@ export const transportData: TransportItem[] = [
     arrivalTime: '11:15',
     duration: '0h 45m',
     price: 150,
-    image: 'https://placehold.co/400x200?text=Flight+KOS-PNH',
+    image: '/transport_air_1.jpg',
     date: '2026-03-20'
   },
   {
@@ -196,7 +196,7 @@ export const transportData: TransportItem[] = [
     arrivalTime: '15:50',
     duration: '0h 50m',
     price: 180,
-    image: 'https://placehold.co/400x200?text=Cambodia+Airways',
+    image: '/transport_air_1.jpg',
     date: '2026-03-15'
   },
   {
@@ -252,7 +252,7 @@ export const transportData: TransportItem[] = [
     arrivalTime: '12:50',
     duration: '0h 50m',
     price: 75,
-    image: 'https://placehold.co/400x200?text=AirAsia',
+    image: '/transport_air_1.jpg',
     date: '2026-03-15'
   },
   {
@@ -294,7 +294,21 @@ export const transportData: TransportItem[] = [
     arrivalTime: '15:00',
     duration: '1h 00m',
     price: 165,
-    image: 'https://placehold.co/400x200?text=Flight+REP-KOS',
+    image: '/transport_air_1.jpg',
     date: '2026-03-15'
+  },
+  {
+    id: '21',
+    type: 'BUS',
+    company: 'Virak Buntham',
+    title: 'Luxury Sleeping Bus',
+    from: 'Phnom Penh',
+    to: 'Sihanoukville',
+    departureTime: '22:00',
+    arrivalTime: '03:00',
+    duration: '5h 00m',
+    price: 18,
+    image: '/transport_bus_1.jpg',
+    date: '2026-03-18'
   }
 ];

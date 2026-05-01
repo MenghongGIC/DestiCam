@@ -14,11 +14,37 @@
   z-index: 10;
 }
 
+@media (max-width: 768px) {
+  .searchHeader {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .searchHeader {
+    padding: 1rem 0.75rem;
+  }
+}
+
 .searchGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   align-items: end; /* Aligns all grid items to the bottom of the row */
+}
+
+@media (max-width: 768px) {
+  .searchGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .searchGrid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
 }
 
 .inputGroup {
@@ -36,6 +62,12 @@
   display: block;
 }
 
+@media (max-width: 480px) {
+  .formLabel {
+    font-size: 0.85rem;
+  }
+}
+
 .select, .input {
   background-color: white;
   color: #333;
@@ -46,6 +78,15 @@
   height: 3rem; /* Fixed height for all */
   line-height: 3rem;
   box-sizing: border-box;
+  font-size: 1rem;
+}
+
+@media (max-width: 480px) {
+  .select, .input {
+    height: 2.75rem;
+    line-height: 2.75rem;
+    font-size: 0.95rem;
+  }
 }
 
 /* For filter sidebar specifically */
@@ -62,9 +103,67 @@
   gap: 2rem;
 }
 
+@media (max-width: 1024px) {
+  .mainContent {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    flex-direction: column;
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+}
+
 .sidebar {
   width: 250px;
   flex-shrink: 0;
+}
+
+.sidebarHeader {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #0d2347;
+}
+
+.toggleAllBtn {
+  background: none;
+  border: none;
+  color: #006ce4;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.toggleAllBtn:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .toggleAllBtn {
+    font-size: 0.85rem;
+    padding: 0.5rem 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    order: 1;
+  }
 }
 
 .filterSection {
@@ -79,6 +178,43 @@
   padding-bottom: 0.5rem;
 }
 
+@media (max-width: 480px) {
+  .filterSection h3 {
+    font-size: 0.95rem;
+  }
+}
+
+.collapsibleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5rem 0;
+  margin: -0.5rem 0;
+  transition: color 0.2s ease;
+}
+
+.collapsibleHeader:hover {
+  color: #006ce4;
+}
+
+@media (max-width: 480px) {
+  .collapsibleHeader {
+    padding: 0.75rem 0;
+    margin: -0.75rem 0;
+  }
+}
+
+.chevron {
+  transition: transform 0.3s ease;
+  transform: rotate(-90deg);
+}
+
+.chevronOpen {
+  transform: rotate(0deg);
+}
+
 .priceInputs {
   display: flex;
   align-items: center;
@@ -90,6 +226,15 @@
   padding: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 0.9rem;
+  min-height: 36px;
+}
+
+@media (max-width: 480px) {
+  .priceInput {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
 }
 
 .checkboxGroup {
@@ -104,6 +249,19 @@
   gap: 0.5rem;
   font-size: 0.9rem;
   cursor: pointer;
+  padding: 0.5rem;
+  margin: -0.5rem;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.checkboxLabel:hover {
+  background: #f0f0f0;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  min-width: 18px;
+  min-height: 18px;
 }
 
 .resultsList {
@@ -113,17 +271,57 @@
   gap: 1.5rem;
 }
 
+.resultsHeader {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: -0.5rem;
+}
+
+@media (max-width: 768px) {
+  .resultsList {
+    order: 2;
+  }
+}
+
 .transportCard {
   background: white;
   border-radius: 8px;
   display: flex;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   border: 1px solid #eee;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .transportCard {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .transportCard {
+    flex-direction: column;
+  }
 }
 
 .cardImageWrapper {
   width: 280px;
   position: relative;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .cardImageWrapper {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardImageWrapper {
+    width: 100%;
+    height: 150px;
+  }
 }
 
 .cardImage {
@@ -153,17 +351,46 @@
   justify-content: space-between;
 }
 
+@media (max-width: 768px) {
+  .cardDetails {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardDetails {
+    padding: 0.75rem;
+  }
+}
+
 .cardHeader {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 .cardHeader h3 {
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0;
+}
+
+@media (max-width: 768px) {
+  .cardHeader h3 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardHeader {
+    gap: 0.5rem;
+  }
+
+  .cardHeader h3 {
+    font-size: 0.95rem;
+  }
 }
 
 .typeTag {
@@ -179,6 +406,22 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .journeyInfo {
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .journeyInfo {
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+  }
 }
 
 .timeBlock {
@@ -191,9 +434,27 @@
   font-weight: 700;
 }
 
+@media (max-width: 768px) {
+  .time {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .time {
+    font-size: 0.9rem;
+  }
+}
+
 .location {
   font-size: 0.85rem;
   color: #666;
+}
+
+@media (max-width: 480px) {
+  .location {
+    font-size: 0.75rem;
+  }
 }
 
 .durationLine {
@@ -202,6 +463,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  min-width: 50px;
 }
 
 .line {
@@ -220,6 +482,13 @@
   font-size: 0.8rem;
   color: #666;
   margin-top: 1rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .tripsInfo {
+    font-size: 0.75rem;
+  }
 }
 
 .cardPriceAction {
@@ -232,6 +501,58 @@
   justify-content: center;
 }
 
+@media (max-width: 768px) {
+  .cardPriceAction {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #eee;
+    align-items: center;
+    padding: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .priceSub {
+    margin-bottom: 0 !important;
+  }
+
+  .bookBtn {
+    width: auto !important;
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardPriceAction {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .priceInfo {
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .bookBtn {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+.priceInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+  .priceInfo {
+    align-items: flex-start;
+  }
+}
+
 .priceLabel {
   font-size: 0.9rem;
   color: #666;
@@ -241,6 +562,18 @@
   font-size: 1.8rem;
   font-weight: 800;
   color: #006ce4;
+}
+
+@media (max-width: 768px) {
+  .priceValue {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .priceValue {
+    font-size: 1.3rem;
+  }
 }
 
 .priceSub {
@@ -258,6 +591,20 @@
   font-weight: 700;
   cursor: pointer;
   width: 100%;
+  min-height: 44px;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+}
+
+.bookBtn:hover {
+  background: #0a1a35;
+}
+
+@media (max-width: 480px) {
+  .bookBtn {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
 }
 
 /* Booking Page Styles */
@@ -265,6 +612,18 @@
   padding: 2rem 4rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .bookingContainer {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bookingContainer {
+    padding: 0.75rem;
+  }
 }
 
 .backLink {
@@ -276,11 +635,30 @@
   margin-bottom: 2rem;
   cursor: pointer;
   font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: #006ce4;
+}
+
+@media (max-width: 480px) {
+  .backLink {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
 }
 
 .bookingGrid {
   display: flex;
   gap: 2rem;
+}
+
+@media (max-width: 968px) {
+  .bookingGrid {
+    flex-direction: column-reverse;
+  }
 }
 
 .paymentSection {
@@ -289,6 +667,18 @@
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 768px) {
+  .paymentSection {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .paymentSection {
+    padding: 1rem;
+  }
 }
 
 .summarySidebar {
@@ -300,10 +690,36 @@
   height: fit-content;
 }
 
+@media (max-width: 968px) {
+  .summarySidebar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .summarySidebar {
+    padding: 1rem;
+  }
+}
+
 .sectionTitle {
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
 }
 
 .formGroup {
@@ -317,17 +733,44 @@
   margin-bottom: 0.5rem;
 }
 
+@media (max-width: 480px) {
+  .formGroup {
+    margin-bottom: 1rem;
+  }
+
+  .formGroup label {
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+  }
+}
+
 .formInput {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 1rem;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .formInput {
+    font-size: 0.95rem;
+    padding: 0.625rem;
+  }
 }
 
 .formRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+}
+
+@media (max-width: 480px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
 }
 
 .bookingSummaryHeader {
@@ -354,10 +797,28 @@
   font-size: 0.9rem;
 }
 
+@media (max-width: 480px) {
+  .summaryDetails {
+    font-size: 0.85rem;
+    gap: 0.5rem;
+  }
+}
+
 .summaryDetailItem {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+@media (max-width: 480px) {
+  .summaryDetailItem {
+    gap: 8px;
+  }
+
+  .summaryDetailItem svg {
+    min-width: 14px;
+    min-height: 14px;
+  }
 }
 
 .priceTable {
@@ -373,6 +834,12 @@
   font-size: 0.9rem;
 }
 
+@media (max-width: 480px) {
+  .priceRow {
+    font-size: 0.85rem;
+  }
+}
+
 .totalRow {
   display: flex;
   justify-content: space-between;
@@ -383,11 +850,24 @@
   padding-top: 1rem;
 }
 
+@media (max-width: 480px) {
+  .totalRow {
+    font-size: 1rem;
+  }
+}
+
 .actionBtns {
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+@media (max-width: 480px) {
+  .actionBtns {
+    margin-top: 1.5rem;
+    gap: 0.75rem;
+  }
 }
 
 .confirmBtn {
@@ -399,6 +879,20 @@
   font-weight: 700;
   cursor: pointer;
   font-size: 1rem;
+  min-height: 44px;
+  width: 100%;
+  transition: background 0.2s ease;
+}
+
+.confirmBtn:hover {
+  background: #0a1a35;
+}
+
+@media (max-width: 480px) {
+  .confirmBtn {
+    padding: 0.875rem;
+    font-size: 0.95rem;
+  }
 }
 
 .backBtnLarge {
@@ -410,4 +904,16 @@
   font-weight: 600;
   cursor: pointer;
   text-align: center;
+  min-height: 44px;
+  transition: background 0.2s ease;
+}
+
+.backBtnLarge:hover {
+  background: #f9f9f9;
+}
+
+@media (max-width: 480px) {
+  .backBtnLarge {
+    padding: 0.75rem;
+  }
 }
