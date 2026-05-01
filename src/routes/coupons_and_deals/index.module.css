@@ -1,0 +1,347 @@
+/* ========== RESET & BASE ========== */
+.main {
+  font-family: 'Inter', sans-serif;
+  background: #f7f9fc;
+  color: #0a1c2f;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 1.8rem 2rem 3rem;
+}
+
+/* ========== HERO SECTION ========== */
+.hero {
+  background: linear-gradient(108deg, #fff2e6 0%, #ffe1cf 100%);
+  border-radius: 2rem;
+  padding: 2rem 2.2rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero_left h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(120deg, #c23d12, #e0451c);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.hero_left h1 i {
+  font-size: 1.8rem;
+  margin-right: 8px;
+  color: #e0451c;
+}
+
+.hero_left p {
+  color: #2c3e4e;
+  max-width: 520px;
+  font-weight: 500;
+}
+
+.hero_badge {
+  background: white;
+  border-radius: 60px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+}
+
+.hero_badge i {
+  color: #e0451c;
+}
+
+/* ========== SECTION TITLE ========== */
+.section_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin: 1.8rem 0 0.8rem;
+}
+
+.section_title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.new_badge {
+  background: #e0451c10;
+  padding: 0.2rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #e0451c;
+}
+
+.update_text {
+  font-size: 0.85rem;
+  color: #e0451c;
+}
+
+/* ========== COUPON GRID ========== */
+.coupons_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.8rem;
+  margin: 1.8rem 0 2rem;
+}
+
+.coupon_card {
+  background: white;
+  border-radius: 1.75rem;
+  overflow: hidden;
+  box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border: 1px solid #f0eae4;
+}
+
+.coupon_card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 36px -12px rgba(0, 0, 0, 0.15);
+}
+
+.card_image {
+  height: 158px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.9rem;
+}
+
+.discount_tag {
+  background: #e0451c;
+  color: white;
+  font-weight: 800;
+  padding: 0.3rem 1rem;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card_content {
+  padding: 1.2rem 1.3rem 1.5rem;
+}
+
+.card_title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+}
+
+.card_desc {
+  color: #3a546d;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  margin: 0.5rem 0;
+}
+
+.coupon_code {
+  background: #f1f5f9;
+  border-radius: 50px;
+  padding: 0.4rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+}
+
+.coupon_code i {
+  color: #e0451c;
+}
+
+.valid_date {
+  font-size: 0.7rem;
+  color: #5b6e8c;
+  margin-top: 6px;
+}
+
+.btn_copy {
+  width: 100%;
+  margin-top: 1rem;
+  background: #e0451c;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 2.5rem;
+  font-weight: 700;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn_copy:hover {
+  background: #bc3512;
+  transform: scale(0.98);
+}
+
+/* ========== EXCLUSIVE BANNER ========== */
+.exclusive_banner {
+  background: linear-gradient(115deg, #0a1f2e 0%, #123c4f 100%);
+  border-radius: 2rem;
+  padding: 1.8rem 2rem;
+  margin: 2rem 0 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.exclusive_banner h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.secret_code {
+  background: #ffffff30;
+  padding: 4px 12px;
+  border-radius: 40px;
+}
+
+.btn_claim {
+  background: #f2a65a;
+  border: none;
+  padding: 0.75rem 1.8rem;
+  border-radius: 3rem;
+  font-weight: 700;
+  color: #0a1f2e;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn_claim:hover {
+  background: #ffb86b;
+  transform: scale(1.02);
+}
+
+/* ========== BUNDLE SECTION ========== */
+.bundle_section {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border: 1px solid #ffe1cf;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bundle_badge {
+  background: #e0451c10;
+  padding: 0.2rem 0.9rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.bundle_section h3 {
+  margin-top: 8px;
+  font-weight: 800;
+}
+
+.bundle_section p {
+  color: #3f5e7c;
+}
+
+.btn_bundle {
+  background: none;
+  border: 2px solid #e0451c;
+  padding: 0.6rem 1.4rem;
+  border-radius: 40px;
+  font-weight: 700;
+  color: #e0451c;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn_bundle:hover {
+  background: #e0451c10;
+}
+
+/* ========== TOAST MESSAGE ========== */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e2f3fdd;
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 60px;
+  font-weight: 600;
+  z-index: 2000;
+  font-size: 0.9rem;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #5f7f9e;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 700px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .hero_left h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero_left h1 i {
+    font-size: 1.4rem;
+  }
+
+  .coupons_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .exclusive_banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .bundle_section {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+}
