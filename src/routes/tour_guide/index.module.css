@@ -32,7 +32,7 @@
     margin: 12px 12px;
 
     border-radius: 8px;
-    border: 2px solid var(--accent);
+    border: 1px solid var(--accent);
 
     flex-wrap: wrap;
     gap: 15px;
@@ -125,10 +125,11 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    border: 2px solid var(--accent);
-    border-radius: 8px;
+    border: 1px solid var(--accent);
+    border-radius: 5px;
     padding: 8px;
     align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .item_container > .item_box > .profile_picture{
