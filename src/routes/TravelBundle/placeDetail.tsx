@@ -7,9 +7,9 @@ import { tripItems, toggleTripItem, isInTrip } from "./tripState";
 const TAGS = ["White sand beach", "Snorkeling", "Night market", "Bioluminescence"];
 
 const NEARBY_PLACES = [
-  { id: 20, title: "Koh Rong", location: "Sihanoukville · Beach", rating: 4.0, visits: "1.2k", image: "/public/kohrong.jpg" },
-  { id: 21, title: "Koh Rong", location: "Sihanoukville · Beach", rating: 4.0, visits: "1.2k", image: "/public/beaches.jpg" },
-  { id: 22, title: "Koh Rong", location: "Sihanoukville · Beach", rating: 4.2, visits: "1.2k", image: "/public/kohrong.jpg" },
+  { id: 20, title: "Koh Rong", location: "Sihanoukville · Beach", rating: 4.0, visits: "1.2k", image: "/kohrong.jpg" },
+  { id: 21, title: "Koh Rong", location: "Sihanoukville · Beach", rating: 4.0, visits: "1.2k", image: "/beaches.jpg" },
+  { id: 22, title: "Koh Rong", location: "Sihanoukville · Beach", rating: 4.2, visits: "1.2k", image: "/kohrong.jpg" },
 ];
 
 const MAIN_PLACE = {

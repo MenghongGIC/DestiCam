@@ -13,7 +13,7 @@ const POPULAR_PLACES = [
     location: "Sihanoukville · Beach",
     rating: 4.6,
     visits: "1.2k",
-    image: "/public/beaches2.jpg",
+    image: "/beaches2.jpg",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const POPULAR_PLACES = [
     location: "Sihanoukville · Beach",
     rating: 4.5,
     visits: "1.3k",
-    image: "/public/kohrong.jpg",
+    image: "/kohrong.jpg",
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const POPULAR_PLACES = [
     location: "Sihanoukville · Beach",
     rating: 4.7,
     visits: "1.5k",
-    image: "/public/kohrong.jpg",
+    image: "/kohrong.jpg",
   },
 ];
 
@@ -40,7 +40,7 @@ const HIDDEN_GEMS = [
     location: "Kep · Coast",
     rating: 4.4,
     visits: "620",
-    image: "/public/kepcrab.jpg",
+    image: "/kepcrab.jpg",
   },
   {
     id: 5,
@@ -48,7 +48,7 @@ const HIDDEN_GEMS = [
     location: "Kep · Island",
     rating: 4.3,
     visits: "480",
-    image: "/public/rabbit.jpg",
+    image: "/rabbit.jpg",
   },
   {
     id: 6,
@@ -56,7 +56,7 @@ const HIDDEN_GEMS = [
     location: "Sihanoukville · Park",
     rating: 4.5,
     visits: "710",
-    image: "/public/ream.jpg",
+    image: "/ream.jpg",
   },
 ];
 
@@ -68,7 +68,7 @@ const ACTIVITIES = [
     price: 50,
     rating: 4.8,
     reviews: 120,
-    image: "/public/angkorwat.jpg",
+    image: "/angkorwat.jpg",
   },
   {
     id: 11,
@@ -77,7 +77,7 @@ const ACTIVITIES = [
     price: 35,
     rating: 4.7,
     reviews: 98,
-    image: "/public/mekongcruise.webp",
+    image: "/mekongcruise.webp",
   },
   {
     id: 12,
@@ -86,7 +86,7 @@ const ACTIVITIES = [
     price: 45,
     rating: 4.9,
     reviews: 143,
-    image: "/public/spa.jpg",
+    image: "/spa.jpg",
   },
 ];
 
