@@ -1,5 +1,6 @@
 import { Title } from "@solidjs/meta";
-import { For, onMount, createSignal, onCleanup } from "solid-js";
+import { For, onMount, createSignal, onCleanup, Setter } from "solid-js";
+import type { Accessor } from "solid-js";
 
 import styles from "./index.module.css";
 
@@ -19,6 +20,8 @@ export default function ThingsToDo() {
     const [innerWidth, setInnerWidth] = createSignal(0);
 
     const [is_show_more_filter, set_is_show_more_filter] = createSignal(false);
+
+    const [show_booking, set_show_booking] = createSignal<{state: boolean, data_info?: activity_info_type}>({state: false});
 
     onMount(() => {
         const handler = () => {
@@ -78,13 +81,13 @@ export default function ThingsToDo() {
                 <div class={styles.item_container}>
                     <For each={data}>
                         {(data_info) => (
-                            <ItemComponent data_info={data_info}/>
+                            <ItemComponent data_info={data_info} set_show_booking={set_show_booking}/>
                         )}
                     </For>
                 </div>
 
             </div>
-
+            <BookTour show={show_booking} set_show={set_show_booking}/>
         </main>
     );
 }
@@ -271,31 +274,136 @@ function FilterContainer2(){
 }
 
 
-function ItemComponent({data_info}: {data_info:  activity_info_type}){
+function ItemComponent({data_info, set_show_booking}: {data_info:  activity_info_type, set_show_booking: Setter<{state: boolean, data_info?: activity_info_type}>}){
+    const reviewCount = Math.round(data_info.rating * 100) + data_info.id * 10;
+
     return (
         <div class={`${styles.item_box} animate__animated animate__fadeIn`}>
-            <img class={styles.activity_image} src="/things_to_do.png"/>
-            <div class={styles.info_box_1}>
-                <span class={styles.text_1}>{data_info.name}</span>
-                <span class={styles.text_2}>
-                    {data_info.location}
-                </span>
-                <span class={styles.text_2}>
-                    {data_info.description}
-                </span>
-                <span class={styles.text_1}>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#FFD700" viewBox="0 0 24 24" stroke-width="1.5" stroke="none" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+            <img class={styles.activity_image} src={data_info.image} alt={data_info.name}/>
+            <div class={styles.card_content}>
+                <div class={styles.tour_name}>{data_info.name}</div>
+                <div class={styles.tour_location}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                     </svg>
-                    {data_info.rating}
-                </span>
-            </div>
-            <div class={styles.info_box_2}>
-                <span>${data_info.price} per person</span>
-                <button class={`btn btn-primary ${styles.book_btn}`}>
+                    <span class={styles.location_text}>{data_info.location}</span>
+                </div>
+                <div class={styles.tour_price}>${data_info.price} per person</div>
+                <button class={`btn btn-primary ${styles.book_btn}`}
+                    on:click={() => set_show_booking({state: true, data_info: data_info})}
+                >
                     Book Now
                 </button>
             </div>
-        </div>
-    )
+            <div class={styles.rating_container}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#FFD700" viewBox="0 0 24 24" stroke-width="1.5" stroke="none">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.563.563 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+                </svg>
+                <span class={styles.rating_value}>{data_info.rating}</span>
+                <span class={styles.review_count}>({reviewCount} reviews)</span>
+            </div>
+         </div>
+     )
+}
+
+function BookTour({
+    show,
+    set_show,
+}:{
+    show:Accessor<{state: boolean, data_info?: activity_info_type}>,
+    set_show: Setter<{state: boolean, data_info?: activity_info_type}>
+}){
+    const [travellers, set_travellers] = createSignal(1);
+
+    const increment = () => set_travellers(t => t + 1);
+    const decrement = () => set_travellers(t => Math.max(1, t - 1));
+
+    return (<>
+        {show().state &&
+            <main class={styles.booking_container}
+                on:click={()=>set_show({...show(), state: false,})}
+            >
+                <div class={styles.booking_inner_box}
+                    on:click={(e: Event) => e.stopPropagation()}
+                >
+                    <div class={styles.booking_header}>
+                        <img class={styles.booking_image}
+                            src={show().data_info?.image||""}
+                            alt={show().data_info?.name}
+                        />
+                        <div class={styles.booking_details}>
+                            <h2 class={styles.booking_title}>{show().data_info?.name}</h2>
+                            <p class={styles.booking_location}>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                                </svg>
+                                {show().data_info?.location}
+                            </p>
+                            <p class={styles.booking_price}>${show().data_info?.price} per person</p>
+                        </div>
+                    </div>
+
+                    <div class="divider"/>
+
+                    <div class={styles.booking_form}>
+                        <div class={styles.form_group}>
+                            <label class={styles.form_label}>Travel Date</label>
+                            <Datepicker />
+                        </div>
+
+                        <div class={styles.form_group}>
+                            <label class={styles.form_label}>Number of Travellers</label>
+                            <div class={styles.traveller_selector}>
+                                <button class={styles.traveller_btn} 
+                                    on:click={decrement}
+                                >-</button>
+                                <span class={styles.traveller_count}>{travellers()}</span>
+                                <button class={styles.traveller_btn} 
+                                    on:click={increment}
+                                >+</button>
+                            </div>
+                        </div>
+
+                        <div class={styles.form_group}>
+                            <label class={styles.form_label}>Special Requests</label>
+                            <textarea class={`textarea textarea-bordered ${styles.textarea}`} 
+                                placeholder="Any special requirements..."
+                                rows="3"
+                            ></textarea>
+                        </div>
+
+                        <div class={styles.booking_summary}>
+                            <div class={styles.summary_row}>
+                                <span>Price per person</span>
+                                <span>${show().data_info?.price}</span>
+                            </div>
+                            <div class={styles.summary_row}>
+                                <span>Travellers</span>
+                                <span>x {travellers()}</span>
+                            </div>
+                            <div class="divider"/>
+                            <div class={styles.summary_total}>
+                                <span>Total</span>
+                                <span class={styles.total_amount}>${(show().data_info?.price || 0) * travellers()}</span>
+                            </div>
+                        </div>
+
+                        <div class={styles.booking_actions}>
+                            <button class={`btn ${styles.cancel_btn}`}
+                                on:click={()=>set_show({...show(), state: false,})}
+                            >Cancel</button>
+                            <button class={`btn ${styles.confirm_btn}`}
+                                on:click={()=>set_show({...show(), state: false,})}
+                            >Confirm Booking</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </main>
+        }
+        
+    </>)
 }
