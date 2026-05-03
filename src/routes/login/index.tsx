@@ -11,19 +11,6 @@ const LoginPage: Component = () => {
     <Title>Login - DestiCam</Title>
     <NavigationBar />
     <div class={styles.layoutContainer}>
-      <header class={styles.header}>
-        <div class={styles.headerBrand}>
-          <span class={`material-symbols-outlined ${styles.brandIcon}`}>travel_explore</span>
-          <h2 class={styles.brandName}>DestiCam</h2>
-        </div>
-        <div class={styles.headerRight}>
-          <nav class={styles.headerNav}>
-            <a href="#" class={styles.navLink}>Explore</a>
-            <a href="#" class={styles.navLink}>Support</a>
-          </nav>
-          <button class={styles.signUpBtn}>Sign Up</button>
-        </div>
-      </header>
 
       <main class={styles.main}>
         <div class={styles.card}>
