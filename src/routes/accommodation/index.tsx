@@ -204,14 +204,6 @@ const App: Component = () => {
           </section>
         </div>
       </main>
-
-      {/* ── Floating Map Button ── */}
-      <div class={styles["map-fab"]}>
-        <button type="button" class={styles["map-fab__btn"]}>
-          <span class={styles.icon}>map</span>
-          Explore on Map
-        </button>
-      </div>
     </div>
   );
 };
