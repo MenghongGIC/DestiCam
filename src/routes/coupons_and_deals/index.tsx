@@ -1,206 +1,168 @@
 import { Title } from "@solidjs/meta";
-import { For } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
+import { useNavigate } from "@solidjs/router";
 
 import styles from "./index.module.css";
 
-// Components
+import type { HotelItem, TransportItem, ActivityItem, SeasonalItem, DealItem, DealType } from "./data";
+import { hotels, transports, activities, seasonal } from "./data";
+import { setDetailItem, setDetailType } from "./store";
 import NavigationBar from "~/components/NavigationBar";
 
-// Types & Data
-import type { coupon_info_type } from "./data";
-import { data } from "./data";
+type TabKey = "hotels" | "transport" | "activities" | "seasonal";
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
-export default function CouponsAndDeals() {
-  // ref for toast DOM manipulation
-  let toastRef!: HTMLDivElement;
-  let toastTimer: ReturnType<typeof setTimeout>;
+const TABS: { key: TabKey; label: string }[] = [
+  { key: "hotels", label: "Hotels" },
+  { key: "transport", label: "Transport" },
+  { key: "activities", label: "Activities" },
+  { key: "seasonal", label: "Seasonal Deals" },
+];
 
-  function showToast(message: string) {
-    clearTimeout(toastTimer);
+export default function Coupons() {
+  const [activeTab, setActiveTab] = createSignal<TabKey>("hotels");
+  const navigate = useNavigate();
 
-    toastRef.innerHTML = `<i class="fas fa-gift" style="margin-right:8px"></i>${message}`;
-    toastRef.style.opacity = "1";
-    toastRef.style.pointerEvents = "none";
-
-    toastTimer = setTimeout(() => {
-      toastRef.style.opacity = "0";
-    }, 2500);
-  }
-
-  function copyCode(code: string) {
-    navigator.clipboard
-      .writeText(code)
-      .then(() => showToast(`✅ Coupon "${code}" copied! Apply at checkout.`))
-      .catch(() => showToast(`✨ Coupon code: ${code} — use at payment step.`));
+  function goToDetail(item: DealItem, type: DealType) {
+    setDetailItem(item);
+    setDetailType(type);
+    navigate("/coupons_and_deals/detail");
   }
 
   return (
-    <>
-      <Title>DestiCam - Coupons &amp; Exclusive Deals</Title>
+    <main class={styles.main}>
+      <Title>DestiCam - Best Travel Deals & Coupons</Title>
+      <NavigationBar/>
 
-      <main class={styles.main}>
-        <div class={styles.container}>
-          {/* ── NAVBAR ─────────────────────────────────────────────────────── */}
-          <NavigationBar />
+      <div class={styles.container}>
+        <div class={styles.header}>
+          <h1>Best Travel Deals & Coupons</h1>
+        </div>
 
-          {/* ── HERO ───────────────────────────────────────────────────────── */}
-          <HeroSection
-            onHeroBadgeClick={() =>
-              showToast("🎁 New deals every week! Check back for KHQR payment promo.")
-            }
-          />
+        <div class={styles.tab_menu}>
+          <For each={TABS}>
+            {(tab) => (
+              <button
+                class={`${styles.tab_btn} ${activeTab() === tab.key ? styles.active : ""}`}
+                on:click={() => setActiveTab(tab.key)}
+              >
+                {tab.label}
+              </button>
+            )}
+          </For>
+        </div>
 
-          {/* ── SECTION HEADER ─────────────────────────────────────────────── */}
-          <div class={styles.section_header}>
-            <div class={styles.section_title}>
-              🔥 Today's Hot Coupons
-              <span class={styles.new_badge}>new</span>
-            </div>
-            <div class={styles.update_text}>
-              <i class="fas fa-sync-alt" /> Updated daily
-            </div>
-          </div>
-
-          {/* ── COUPONS GRID ───────────────────────────────────────────────── */}
-          <div class={styles.coupons_grid}>
-            <For each={data}>
-              {(coupon_info) => (
-                <CouponCard
-                  coupon_info={coupon_info}
-                  onCopy={() => copyCode(coupon_info.code)}
-                  onCardClick={() =>
-                    showToast(`🎫 ${coupon_info.title}: use code ${coupon_info.code}`)
-                  }
-                />
+        <Show when={activeTab() === "hotels"}>
+          <div class={styles.deals_grid}>
+            <For each={hotels}>
+              {(hotel) => (
+                <HotelCard hotel={hotel} onClaim={() => goToDetail(hotel, "hotel")} />
               )}
             </For>
           </div>
+        </Show>
 
-          {/* ── EXCLUSIVE BANNER ───────────────────────────────────────────── */}
-          <div class={styles.exclusive_banner}>
-            <h3>
-              <i class="fas fa-map-marked-alt" /> Hidden Local Gem Card
-            </h3>
-            <div>
-              <p>
-                ✨ Unlock 20% off on secret waterfall tours &amp; local homestay
-                experiences. Use code:{" "}
-                <strong class={styles.secret_code}>SECRET20</strong>
-              </p>
-            </div>
-            <button
-              class={styles.btn_claim}
-              on:click={() => copyCode("SECRET20")}
-            >
-              Claim now →
-            </button>
+        <Show when={activeTab() === "transport"}>
+          <div class={styles.deals_grid}>
+            <For each={transports}>
+              {(item) => (
+                <SimpleCard item={item} onClaim={() => goToDetail(item, "transport")} />
+              )}
+            </For>
           </div>
+        </Show>
 
-          {/* ── BUNDLE SECTION ─────────────────────────────────────────────── */}
-          <div class={styles.bundle_section}>
-            <div>
-              <span class={styles.bundle_badge}>⭐ Bundle &amp; Save</span>
-              <h3>Plan your Cambodia Trip with Travel Bundle</h3>
-              <p>Accommodation + Transport + Activities → extra 12% OFF</p>
-            </div>
-            <button
-              class={styles.btn_bundle}
-              on:click={() =>
-                showToast(
-                  '🎒 Travel Bundle: custom trip with extra 12% off! Head to "Bundle" page'
-                )
-              }
-            >
-              Create your bundle
-            </button>
+        <Show when={activeTab() === "activities"}>
+          <div class={styles.deals_grid}>
+            <For each={activities}>
+              {(item) => (
+                <SimpleCard item={item} onClaim={() => goToDetail(item, "activity")} />
+              )}
+            </For>
           </div>
+        </Show>
 
-          {/* ── FOOTER ─────────────────────────────────────────────────────── */}
-          <div class={styles.footer}>
-            <i class="fas fa-credit-card" /> Pay with KHQR / Bakong • Local
-            support • Verified by DestiCam team{" "}
-            <i class="fas fa-location-dot" /> Cambodia trusted platform
+        <Show when={activeTab() === "seasonal"}>
+          <div class={styles.deals_grid}>
+            <For each={seasonal}>
+              {(item) => (
+                <SimpleCard item={item} onClaim={() => goToDetail(item, "seasonal")} />
+              )}
+            </For>
           </div>
+        </Show>
+
+        <div class={styles.footer}>
+          💳 Pay with KHQR / Bakong • Local support • Verified by DestiCam team &nbsp;
+          📍 Cambodia trusted platform
         </div>
-
-        {/* ── TOAST (ref-controlled) ─────────────────────────────────────── */}
-        <div ref={toastRef} class={styles.toast} style={{ opacity: "0" }} />
-      </main>
-    </>
+      </div>
+    </main>
   );
 }
 
-// ─── Hero Section ─────────────────────────────────────────────────────────────
-function HeroSection({ onHeroBadgeClick }: { onHeroBadgeClick: () => void }) {
+// ===== HOTEL CARD =====
+function HotelCard({
+  hotel,
+  onClaim,
+}: {
+  hotel: HotelItem;
+  onClaim: () => void;
+}) {
   return (
-    <div class={styles.hero}>
-      <div class={styles.hero_left}>
-        <h1>
-          <i class="fas fa-ticket-alt" /> Coupons &amp; Exclusive Deals
-        </h1>
-        <p>
-          Unlock secret discounts on stays, tours &amp; activities. Verified
-          offers for Angkor Wat, Koh Rong, Phnom Penh and hidden gems.
-        </p>
-      </div>
-      <div class={styles.hero_badge} on:click={onHeroBadgeClick}>
-        <i class="fas fa-gem" />
-        <span>Limited time · Up to 40% OFF</span>
+    <div class={styles.hotel_card} on:click={onClaim}>
+      <div
+        class={styles.card_image}
+        style={{ "background-image": `url('${hotel.image}')` }}
+      />
+      <div class={styles.card_content}>
+        <div class={styles.hotel_name}>{hotel.name}</div>
+        <div class={styles.location}>📍 {hotel.location}</div>
+        <div class={styles.description}>{hotel.description.substring(0, 100)}...</div>
+        <div class={styles.price_row}>
+          <span class={styles.price}>{hotel.price}</span>
+          <span class={styles.nights}>🗓 {hotel.nights}</span>
+        </div>
+        <button
+          class={styles.claim_btn}
+          on:click={(e: Event) => {
+            e.stopPropagation();
+            onClaim();
+          }}
+        >
+          Claim Deal
+        </button>
       </div>
     </div>
   );
 }
 
-// ─── Coupon Card ──────────────────────────────────────────────────────────────
-function CouponCard({
-  coupon_info,
-  onCopy,
-  onCardClick,
+// ===== SIMPLE CARD (Transport / Activities / Seasonal) =====
+function SimpleCard({
+  item,
+  onClaim,
 }: {
-  coupon_info: coupon_info_type;
-  onCopy: () => void;
-  onCardClick: () => void;
+  item: TransportItem | ActivityItem | SeasonalItem;
+  onClaim: () => void;
 }) {
-  let cardRef!: HTMLDivElement;
-
   return (
-    <div
-      ref={cardRef}
-      class={styles.coupon_card}
-      on:click={(e: MouseEvent) => {
-        const target = e.target as HTMLElement;
-        if (!target.closest(`.${styles.btn_copy}`)) {
-          onCardClick();
-        }
-      }}
-    >
-      {/* Card image */}
+    <div class={styles.simple_card} on:click={onClaim}>
       <div
         class={styles.card_image}
-        style={{ "background-image": `url(${coupon_info.image})` }}
-      >
-        <div class={styles.discount_tag}>{coupon_info.discount}</div>
-      </div>
-
-      {/* Card content */}
+        style={{ "background-image": `url('${item.image}')` }}
+      />
       <div class={styles.card_content}>
-        <div class={styles.card_title}>{coupon_info.title}</div>
-        <div class={styles.card_desc}>{coupon_info.description}</div>
-        <div class={styles.coupon_code}>
-          <i class="fas fa-tag" /> {coupon_info.code}
-        </div>
-        <div class={styles.valid_date}>
-          <i class="far fa-clock" /> {coupon_info.validTill}
-        </div>
+        <h3>{item.title}</h3>
+        <div class={styles.company}>🏢 {item.company}</div>
+        <div class={styles.description}>{item.description.substring(0, 100)}...</div>
+        <div class={styles.price}>{item.price}</div>
         <button
-          class={styles.btn_copy}
-          on:click={(e: MouseEvent) => {
+          class={styles.claim_btn}
+          on:click={(e: Event) => {
             e.stopPropagation();
-            onCopy();
+            onClaim();
           }}
         >
-          <i class="fas fa-copy" /> Get Code / Copy
+          Claim Deal
         </button>
       </div>
     </div>

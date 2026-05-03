@@ -1,0 +1,270 @@
+.main {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8e8e8 100%);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* ===== BACK BUTTON ===== */
+.back_btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  font-size: 0.9rem;
+}
+
+.back_btn:hover {
+  background: #e0451c;
+  color: white;
+  transform: translateX(-4px);
+}
+
+/* ===== DETAIL CARD ===== */
+.detail_card {
+  background: white;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== BANNER ===== */
+.banner {
+  background: linear-gradient(135deg, #120b6b, hsl(244, 76%, 23%));
+  color: #fcfcff;
+  padding: 2rem;
+  text-align: center;
+}
+
+.banner h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.banner h1 {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  padding: 2rem;
+}
+
+.detail_image {
+  width: 100%;
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+  background-color: #dde3ec;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.content h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #1a1a2e;
+}
+
+.company_info {
+  color: #e0451c;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+/* ===== PRICE SECTION ===== */
+.price_section {
+  background: #f9f9f9;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.old_price {
+  font-size: 1rem;
+  color: #888;
+  text-decoration: line-through;
+  display: block;
+}
+
+.new_price {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #2e7d32;
+  margin: 0.5rem 0;
+}
+
+.timer {
+  background: #1a1a2e;
+  color: white;
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.timer_expired {
+  background: #b71c1c;
+}
+
+/* ===== CLAIM BUTTON ===== */
+.claim_btn_large {
+  background: #1976d2;
+  color: white;
+  border: none;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 1rem 0;
+  transition: background 0.2s;
+}
+
+.claim_btn_large:hover {
+  background: #1565c0;
+}
+
+/* ===== HIGHLIGHTS ===== */
+.highlights {
+  background: #f0f7ff;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin: 1rem 0;
+}
+
+.highlights h4 {
+  color: #1976d2;
+  margin-bottom: 0.5rem;
+}
+
+.highlights p {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0.3rem 0;
+}
+
+/* ===== HOTEL INFO ===== */
+.hotel_info {
+  margin-top: 1.5rem;
+}
+
+.hotel_info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hotel_location {
+  color: #e0451c;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.hotel_info p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ===== AMENITIES ===== */
+.amenities {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.amenities span {
+  font-size: 1.5rem;
+}
+
+/* ===== NO ITEM FALLBACK ===== */
+.no_item {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.no_item p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #ddd;
+  color: #888;
+  font-size: 0.75rem;
+}
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e2f3fdd;
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 60px;
+  font-weight: 600;
+  z-index: 2000;
+  font-size: 0.9rem;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .new_price {
+    font-size: 1.8rem;
+  }
+
+  .detail_image {
+    height: 160px;
+  }
+
+  .content h3 {
+    font-size: 1.2rem;
+  }
+
+  .banner h1 {
+    font-size: 1.4rem;
+  }
+}

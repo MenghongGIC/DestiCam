@@ -44,18 +44,15 @@
 
 /* ──── Nav box ──── */
 .nav_box {
-  display: none;
+  display: flex;
   align-items: center;
   gap: 2rem;
   flex: 1;
   margin: 0 1rem;
+  overflow: auto;
+  padding: 15px 0;
 }
 
-@media (min-width: 980px) {
-  .nav_box {
-    display: flex;
-  }
-}
 
 /* ──── Nav items ──── */
 .nav_item {
@@ -65,6 +62,8 @@
   text-decoration: none;
   transition: color 0.15s;
   white-space: nowrap;
+  width: fit-content;
+  
 }
 
 .nav_item:hover {
