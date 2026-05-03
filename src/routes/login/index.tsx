@@ -1,15 +1,16 @@
 import { Title, Link } from "@solidjs/meta";
 import { Component, createSignal } from "solid-js";
 import styles from "./index.module.css";
+import NavigationBar from "~/components/NavigationBar";
 
 const LoginPage: Component = () => {
   const [showPassword, setShowPassword] = createSignal(false);
 
   return (<>
     <Link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
-  
+    <Title>Login - DestiCam</Title>
+    <NavigationBar />
     <div class={styles.layoutContainer}>
-
       <header class={styles.header}>
         <div class={styles.headerBrand}>
           <span class={`material-symbols-outlined ${styles.brandIcon}`}>travel_explore</span>

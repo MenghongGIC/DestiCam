@@ -1,27 +1,14 @@
 import { Title, Link } from "@solidjs/meta";
 import { Component } from "solid-js";
 import styles from "./index.module.css";
+import NavigationBar from "~/components/NavigationBar";
 
 const SignUpPage: Component = () => {
   return (<>
     <Link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
-    
+    <Title>Sign Up - DestiCam</Title>
+    <NavigationBar />
     <div class={styles.layoutContainer}>      
-      <header class={styles.header}>
-        <div class={styles.headerBrand}>
-          <span class={`material-symbols-outlined ${styles.brandIcon}`}>temple_buddhist</span>
-          <h1 class={styles.brandName}>DestiCam</h1>
-        </div>
-        <div class={styles.headerRight}>
-          <nav class={styles.headerNav}>
-            <a href="#" class={styles.navLink}>Explore</a>
-            <a href="#" class={styles.navLink}>Destinations</a>
-          </nav>
-          <button class={styles.signInBtn}>Sign In</button>
-        </div>
-      </header>
-
-
       <main class={styles.main}>
         <div class={styles.card}>
           {/* Hero image */}
@@ -108,7 +95,6 @@ const SignUpPage: Component = () => {
               </button>
             </form>
 
-            {/* Sign-in footer */}
             <div class={styles.cardFooter}>
               <p class={styles.cardFooterText}>
                 Already have an account?{" "}
