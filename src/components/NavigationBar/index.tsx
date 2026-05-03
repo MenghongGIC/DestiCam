@@ -93,7 +93,7 @@ export default function NavigationBar() {
                         navigate("/")
                     }}
                 />
-                {(innerWidth() >= 1110) &&
+                {(innerWidth() >= 600) &&
                     <NavItems />
                 }
                 <div class={styles.account_box}>
@@ -113,7 +113,7 @@ export default function NavigationBar() {
                     </button>
                 </div>
             </div>
-            {(innerWidth() < 1110) &&
+            {(innerWidth() < 600) &&
                 <div class={styles.frame_2}>
                 <NavItems />
                 </div>
