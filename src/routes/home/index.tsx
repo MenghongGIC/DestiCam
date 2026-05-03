@@ -6,7 +6,6 @@ import styles from "./index.module.css";
 import Datepicker from "~/components/Datepicker";
 import Footer from "~/components/footer/footer";
 import Logo from "~/components/logo/logo";
-import NavigationBar from "~/components/NavigationBar";
 import Card from "~/components/card/card";
 import Button from "~/components/button/button";
 
@@ -259,7 +258,6 @@ const App: Component = () => {
       {/* ── HEADER ── */}
       <header class={styles.header}>
         <div class={styles.headerInner}>
-          <NavigationBar />
         </div>
       </header>
 

@@ -1,78 +1,82 @@
-.container{
+/* ──── Container ──── */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.frame_1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.logo {
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.account_box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.sign_in_btn {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.sign_up_btn {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.frame_2 {
+  display: flex;
+  width: 100%;
+}
+
+/* ──── Nav box ──── */
+.nav_box {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
+  margin: 0 1rem;
+}
+
+@media (min-width: 980px) {
+  .nav_box {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    border-bottom: 2px solid var(--accent);
+  }
 }
 
-A{
-    text-wrap: nowrap;
-    font-size: 1em;
-
-    font-family: var(--font-family-secondary);
+/* ──── Nav items ──── */
+.nav_item {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: oklch(var(--bc) / 0.6);
+  text-decoration: none;
+  transition: color 0.15s;
+  white-space: nowrap;
 }
 
-.frame_1{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 12px;
-    flex: 1;
+.nav_item:hover {
+  color: oklch(var(--p));
 }
 
-.frame_2{
-    display: flex;
-    flex-direction: row;
-    padding: 12px 12px;
-    flex: 1;
-    overflow: auto;
+.current_nav_item {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: oklch(var(--p));
+  text-decoration: none;
+  border-bottom: 2px solid oklch(var(--p));
+  padding-bottom: 0.25rem;
+  white-space: nowrap;
 }
-
-.nav_box, .account_box{
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    gap: 15px;
-
-}
-
-.nav_box > A {
-    text-decoration: none;
-    cursor: pointer;
-    color: var(--text-primary);
-}
-
-.nav_box > A:hover{
-
-    border-bottom: 2px solid var(--accent);
-
-}
-
-.nav_box > .current_nav_item{
-    border-bottom: 2px solid var(--accent);
-}
-
-.nav_box > .current_nav_item:hover{
-    text-decoration: none;
-}
-
-
-
-.account_box button{
-    cursor: pointer;
-    color: var(--text-primary);
-    font-family: var(--font-family-secondary);
-}
-
-
-.account_box .sign_up_btn{
-    font-family: var(--font-family-secondary);
-    background: var(--primary);
-    color: white;
-    border-radius: 8px;
-}
-
