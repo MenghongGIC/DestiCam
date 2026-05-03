@@ -46,7 +46,6 @@ function NavItems(){
     );
 
     onMount(() => {
-        console.log("HERE", location.pathname);
         setCurrentLocation(location.pathname);
     })
 
@@ -56,7 +55,7 @@ function NavItems(){
                 {(item)=><>
                     <A 
                         href={item.path}
-                        class={item.path.toLowerCase() === `/${currentLocation().split("/")[1]??"".toLowerCase()}` ? styles.current_nav_item : ""}
+                        class={`${item.path.toLowerCase() === `/${currentLocation().split("/")[1]??"".toLowerCase()}` ? styles.current_nav_item : ""} ${styles.nav_item}`}
                     >
                         {item.title}
                     </A>
@@ -94,7 +93,7 @@ export default function NavigationBar() {
                         navigate("/")
                     }}
                 />
-                {(innerWidth() >= 980) &&
+                {(innerWidth() >= 1110) &&
                     <NavItems />
                 }
                 <div class={styles.account_box}>
@@ -114,7 +113,7 @@ export default function NavigationBar() {
                     </button>
                 </div>
             </div>
-            {(innerWidth() < 980) &&
+            {(innerWidth() < 1110) &&
                 <div class={styles.frame_2}>
                 <NavItems />
                 </div>
