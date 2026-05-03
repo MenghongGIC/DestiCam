@@ -90,7 +90,7 @@ export default function NavigationBar() {
                 <img class={styles.logo} src="/logo.png"
                     width={100}
                     on:click={()=>{
-                        navigate("/")
+                        navigate("/home")
                     }}
                 />
                 {(innerWidth() >= 1110) &&
