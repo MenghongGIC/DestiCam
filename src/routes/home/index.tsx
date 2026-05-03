@@ -8,6 +8,7 @@ import Footer from "~/components/footer/footer";
 import Logo from "~/components/logo/logo";
 import Card from "~/components/card/card";
 import Button from "~/components/button/button";
+import NavigationBar from "~/components/NavigationBar";
 
 
 interface TabConfig {
@@ -256,10 +257,7 @@ const App: Component = () => {
     <Link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
     <div class={styles.wrapper}>
       {/* ── HEADER ── */}
-      <header class={styles.header}>
-        <div class={styles.headerInner}>
-        </div>
-      </header>
+      <NavigationBar/>
 
       <main class={styles.main}>
         {/* ── HERO ── */}
