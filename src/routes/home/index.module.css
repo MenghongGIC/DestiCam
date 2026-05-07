@@ -736,3 +736,7 @@
   height: 1.25rem;
   object-fit: contain;
 }
+
+.hiddenLabel {
+  display: none;
+}

@@ -1,5 +1,6 @@
 import { Title, Link } from "@solidjs/meta";
 import { Component, createSignal, Show } from "solid-js";
+import { useNavigate } from "@solidjs/router";
 import styles from "./index.module.css";
 
 
@@ -26,6 +27,7 @@ interface SearchFormState {
 }
 
 const App: Component = () => {
+  const navigate = useNavigate();
   const [showCalendar, setShowCalendar] = createSignal(false);
   const [dateLabel, setDateLabel] = createSignal("Oct 05 - Oct 12");
   const [activeTab, setActiveTab] = createSignal<string>("Hotels");
@@ -138,7 +140,7 @@ const App: Component = () => {
               </div>
               <Show when={showCalendar()}>
                 <div class={styles.datepickerWrapper}>
-                  <Datepicker />
+                  <Datepicker label_class={styles.hiddenLabel} />
                 </div>
               </Show>
             </div>
@@ -224,7 +226,7 @@ const App: Component = () => {
               </div>
               <Show when={showCalendar()}>
                 <div class={styles.datepickerWrapper}>
-                  <Datepicker />
+                  <Datepicker label_class={styles.hiddenLabel} />
                 </div>
               </Show>
             </div>
@@ -299,7 +301,7 @@ const App: Component = () => {
               <div class={styles.searchInputRow}>
                 {renderTabSpecificFields()}
 
-                <button type="button" class={styles.searchBtn}>
+                <button type="button" class={styles.searchBtn} onClick={() => navigate("/accommodation")}>
                   <span class="material-symbols-outlined">search</span>
                   Search
                 </button>
