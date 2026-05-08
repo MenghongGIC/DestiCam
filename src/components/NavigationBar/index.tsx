@@ -1,4 +1,4 @@
-import { createSignal, onMount, onCleanup, createEffect, on, For  } from "solid-js";
+import { createSignal, onMount, onCleanup, createEffect, on, For, Show  } from "solid-js";
 
 import { A, useLocation, useNavigate } from "@solidjs/router";
 
@@ -33,92 +33,165 @@ const NAV_ITEM_DATA:{title:string, path:string}[] = [
 ];
 
 
-function NavItems(){
-    const location = useLocation();
+// function NavItems(){
+//     const location = useLocation();
     
 
-    const [currentLocation, setCurrentLocation] = createSignal(location.pathname);
+//     const [currentLocation, setCurrentLocation] = createSignal(location.pathname);
 
-    createEffect(
-        on(useLocation, (location) => {
-            setCurrentLocation(location.pathname);
-        })
-    );
+//     createEffect(
+//         on(useLocation, (location) => {
+//             setCurrentLocation(location.pathname);
+//         })
+//     );
 
-    onMount(() => {
-        setCurrentLocation(location.pathname);
-    })
+//     onMount(() => {
+//         setCurrentLocation(location.pathname);
+//     })
 
-    return (<>
-        <div class={styles.nav_box}>
-            <For each={NAV_ITEM_DATA}>
-                {(item)=><>
-                    <A 
+//     return (<>
+//         <div class={styles.nav_box}>
+//             <For each={NAV_ITEM_DATA}>
+//                 {(item)=><>
+//                     <A 
+//                         href={item.path}
+//                         class={`${item.path.toLowerCase() === `/${currentLocation().split("/")[1]??"".toLowerCase()}` ? styles.current_nav_item : ""} ${styles.nav_item}`}
+//                     >
+//                         {item.title}
+//                     </A>
+//                 </>}
+                
+//             </For>
+            
+//         </div>
+        
+//     </>)
+// }
+
+function NavItems(props: { onNavigate?: () => void }) {
+    const location = useLocation();
+    const activeSegment = () =>
+        location.pathname.split("/")[1]?.toLowerCase() ?? "";
+ 
+    return (
+        <For each={NAV_ITEM_DATA}>
+            {(item) => {
+                const isActive = () =>
+                    item.path.toLowerCase() === `/${activeSegment()}`;
+ 
+                return (
+                    <A
                         href={item.path}
-                        class={`${item.path.toLowerCase() === `/${currentLocation().split("/")[1]??"".toLowerCase()}` ? styles.current_nav_item : ""} ${styles.nav_item}`}
+                        class={`${styles.nav_item} ${isActive() ? styles.current_nav_item : ""}`}
+                        onClick={props.onNavigate}
                     >
                         {item.title}
                     </A>
-                </>}
-                
-            </For>
-            
-        </div>
-        
-    </>)
+                );
+            }}
+        </For>
+    );
 }
 
 export default function NavigationBar() {
-
     const navigate = useNavigate();
-
-    const [innerWidth, setInnerWidth] = createSignal(0);
+    const [innerWidth, setInnerWidth] = createSignal(
+        typeof window !== "undefined" ? window.innerWidth : 1200
+    );
 
     onMount(() => {
-        const handler = () => {
-            setInnerWidth(window.innerWidth);
-        };
-        handler();
-    
+        const handler = () => setInnerWidth(window.innerWidth);
         window.addEventListener("resize", handler);
         onCleanup(() => window.removeEventListener("resize", handler));
     });
 
+    const isDesktop = () => innerWidth() >= 1110;
+
+    // For hamburger menu
+    const [menuOpen, setMenuOpen] = createSignal(false);
+    const closeMenu = () => setMenuOpen(false);
+    // 
+
+    // Close menu when clicking outside
+    onMount(() => {
+        const handler = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (!target.closest(`.${styles.container}`)) closeMenu();
+        };
+        document.addEventListener("click", handler);
+        onCleanup(() => document.removeEventListener("click", handler));
+    });
+    //
+
     return (
         <div class={styles.container}>
             <div class={styles.frame_1}>
-                <img class={styles.logo} src="/logo.png"
+                <img
+                    class={styles.logo}
+                    src="/logo.png"
                     width={100}
-                    on:click={()=>{
-                        navigate("/home")
-                    }}
+                    alt="Logo"
+                    onClick={() => navigate("/home")}
                 />
-                {(innerWidth() >= 600) &&
-                    <NavItems />
-                }
+ 
+                {/* Inline nav — desktop only */}
+                <Show when={isDesktop()}>
+                    <nav class={styles.nav_box}>
+                        <NavItems />
+                    </nav>
+                </Show>
+ 
+                {/* Right-side actions */}
                 <div class={styles.account_box}>
-                    <button class={`btn btn-ghost ${styles.sign_in_btn}`}
-                        on:click={() => {
-                            navigate("/login");
-                        }}
+                    <button
+                        class={`btn btn-ghost ${styles.sign_in_btn}`}
+                        onClick={() => navigate("/login")}
                     >
                         Sign In
                     </button>
-                    <button class={`btn btn-neutral ${styles.sign_up_btn}`}
-                        on:click={() => {
-                            navigate("/sign_up");
-                        }}
+                    <button
+                        class={`btn btn-neutral ${styles.sign_up_btn}`}
+                        onClick={() => navigate("/sign_up")}
                     >
                         Sign Up
                     </button>
+ 
+                    {/* Hamburger — mobile/tablet only */}
+                    <Show when={!isDesktop()}>
+                        <button
+                            class={styles.hamburger}
+                            aria-label="Toggle navigation menu"
+                            aria-expanded={menuOpen()}
+                            onClick={(e: MouseEvent) => {
+                                e.stopPropagation();
+                                setMenuOpen((v) => !v);
+                            }}
+                        >
+                            {/* Animated three-line icon */}
+                            <span class={`${styles.bar} ${menuOpen() ? styles.bar_open_1 : ""}`} />
+                            <span class={`${styles.bar} ${menuOpen() ? styles.bar_open_2 : ""}`} />
+                            <span class={`${styles.bar} ${menuOpen() ? styles.bar_open_3 : ""}`} />
+                        </button>
+                    </Show>
                 </div>
             </div>
-            {(innerWidth() < 600) &&
+ 
+            {/* Scrollable sub-bar — medium breakpoint only */}
+            <Show when={!isDesktop() && innerWidth() >= 640}>
                 <div class={styles.frame_2}>
-                <NavItems />
+                    <nav class={styles.nav_box}>
+                        <NavItems />
+                    </nav>
                 </div>
-            }
+            </Show>
+            
+            {/* Dropdown menu — mobile only */}
+            <Show when={!isDesktop() && innerWidth() < 640 && menuOpen()}>
+                <nav class={styles.mobile_menu} onClick={closeMenu}>
+                    <NavItems onNavigate={closeMenu} />
+                </nav>
+            </Show>
+ 
         </div>
-        
     );
 }
