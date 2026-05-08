@@ -2,7 +2,7 @@ import { Title, Link } from "@solidjs/meta";
 import { Component, createSignal, Show } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 import styles from "./index.module.css";
-
+import { destinations, gems, Destination, Gem } from "./data";
 
 import Datepicker from "~/components/Datepicker";
 import Footer from "~/components/footer/footer";
@@ -31,15 +31,16 @@ const App: Component = () => {
   const [showCalendar, setShowCalendar] = createSignal(false);
   const [dateLabel, setDateLabel] = createSignal("Oct 05 - Oct 12");
   const [activeTab, setActiveTab] = createSignal<string>("Hotels");
-  
-  // Form state controlled based on active tab
+
+  const [selectedDestination, setSelectedDestination] = createSignal<Destination | null>(null);
+  const [selectedGem, setSelectedGem] = createSignal<Gem | null>(null);
+
   const [formState, setFormState] = createSignal<SearchFormState>({
     location: "",
     dateStart: "",
     dateEnd: "",
     travelers: "2 Adults, 1 Room",
   });
-
   const handleDate = (date: Date) => { 
     setDateLabel(date.toDateString());
     setShowCalendar(false);
@@ -57,54 +58,6 @@ const App: Component = () => {
     { label: "Coupon & Deals", icon: "workspace_premium" },
     { label: "Travel Bundles", icon: "card_travel" },
   ];
-
-  const destinations = [
-    {
-      name: "Siem Reap",
-      properties: "1,240",
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDFumuGmkcuBH3QtwiMPtpfqRmcO_HfWPbPZNmQpQXXguTOtOp0n6tzpVlIKVomfqMpyuYGxe1U-LxIZPc4MaYY4AVIM0SDJjxChquuiWm9SbWjkLQpPrdc15wFIGmHnt3EV_mP4jTt-SMwDf6eEAns-NpsCqkSq44zQAEudEHXMS4eSu9xbPfQchdA-C5xnv6zN5mC3zyNr7YQosm6ZrcHtiUiSLCxLnt8Mzh5E7--F2jT8LhX6ppS_SYmcViMU-SlB_UvfmKTJVgd",
-    },
-    {
-      name: "Phnom Penh",
-      properties: "850",
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAQiLsuffMwL-TJPI2cppyou4T-VFqKFG6YrjWxaFkBBpyBizn19DphzoiH2-67hLcgObs9bYckENUHN5sk2rT158p-19oAmvT__aZoUc8Dhlupvf1zJ8cYLj8oDNw-sJN-Q1Urfr4lIi7YQcryU_ybwMuwI6nBSIrMeVWf677yWxXqA3V8OgjsdsowId55HqBunNDzYUhrCVTGYoITXWFyX5wosLpF03DyzqbF5XwBmeDP4D0L6PnPK-wxYKCXKb1MidUBBtM3Sx9V",
-    },
-    {
-      name: "Sihanoukville",
-      properties: "420",
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCmzAnkgMKhEDPnpCUqIwkwV-8EOOBXvFbcIqnKiymzcStktNKfS9dJ7PzjIZguip3aEYLytPX89_Im9erzm1UIuyOeL48THYJ7u8wVb-8pF2PHo_ls2YwtxeJMqyGcTu9vnXGqmPT_lUIB-JlVs4lQsC8OSykQCxdaQtnT-xL5gPDfvemricmFRvXQ9WrDLdaHrsxG2J8eMTMoC782LjasWEqrb9KITzYJgmHlPZ8aA9uH6L1__SSBvI5AtBFOWO_p9ctRAFXfnkZU",
-    },
-    {
-      name: "Kampot",
-      properties: "310",
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuADlsE4R2XrQPtD2547Zlu4eRSnjCpkAjf83WdVDDbDe3uqHCa46kwwVKqGObe60Gc1FFy2rvX9l4Mcifm8QG92iruJ3yrC4Iy2Sm7Br8acmYvkTm3K7AHkNTsUNlCBWwvnbVt9U5mjLRCQkYRg54Kl5Qmz-FQU0lrDU2kssG65e3lBx9jKraQz1u7olw2FuXnde2C3sT3_VEDn6sbpJTApsemLlETIQN2dSiC0bc0xwNkaxNVNP7x8W6tfZIfRYSc129XgJg2TF4NY",
-    },
-  ];
-
-  const gems = [
-    {
-      title: "Tonlé Sap Floating Village",
-      desc: "Experience the unique lifestyle of communities living on the water.",
-      price: "$25 / person",
-      rating: "4.9",
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDit9ZW6mSU1AxuNekaPde6sR0EWQH-3YcQIvzn-31LJ_ya-CYMaugBGEXI34guqzYjeuJQY-YQitH2EWqHojBKcdil9FpE_u6a188RBHLisyslOWftAq8DY3xJjvyEu9PPwS6N0DMbWumn8HqI3Yourk62wD4tDYDudgNwt2kYx5r7rPJ_s0ehSy0QV_L6vllxy2iMGJXGZFlOJ2AEC3AHoheflrAJiQoW40Ltdm_akD7vycI17uB8VI_G1ln9DlNQBiR5ttb1_GCK",
-    },
-    {
-      title: "Mondulkiri Jungle Trek",
-      desc: "Connect with wildlife and visit ethical elephant sanctuaries.",
-      price: "$45 / person",
-      rating: "4.8",
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBcse-8FsVtoYcjcL40hKFUXtDHBlZs4s5MBj9w8B2k27BURhf6j5upUbsECM-GIPzKD7jnxWb4oglAhe7HZsXSTiX_UYqGA63fDkJoeThQOJkNHvxdC0Vw-LD0MbhNbyTaDds8WkQYLlbeZ_c1Kqnc0YmXgnFmkJ4lNRKurgJpzPr22XdOhWtkU3WKlWZafhrP-EWMgjhcJfJQPTRX51Gm5P_w3MHEttrEF9fFZyitEyGPNYtEgosWHEfjGMFtOd2g-ipxL0d6xcwF",
-    },
-    {
-      title: "Phnom Penh Street Food Tour",
-      desc: "Taste authentic flavors from the best night markets with a local expert.",
-      price: "$15 / person",
-      rating: "5.0",
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAIGcvau4q90nUzLLSBC3ZRQ__RjaoHXR8DHDBqS1ixJ5vNC8p4lQhTbrs3xSCfYF5DxVfwYKZot7bjtEnpqH4OmOR4-trE09Ulruq2CUd9biiWZRQ9gxra-bUP6IEQGlTBmHMgkNfRJFnlTIzScYJIKQfTP4_V3cda7wEHKM-XwUsbLKbKD86AqfINE-WfavlVEEQxkJFVet8m9cD3pYWG8CPVCyZMa20_mLl9VaLEJwZOnYRqdYU7UFheqVjmReloNBOL0gtvDDzd",
-    },
-  ];
-
   // Render form fields based on active tab
   const renderTabSpecificFields = () => {
     switch (activeTab()) {
@@ -324,7 +277,7 @@ const App: Component = () => {
 
           <div class={styles.destGrid}>
             {destinations.map((d) => (
-              <div class={styles.destCard}>
+              <div class={styles.destCard} onClick={() => setSelectedDestination(d)} style="cursor: pointer;">
                 <div class={styles.destImgWrap}>
                   <img src={d.img} alt={d.name} class={styles.destImg} />
                   <div class={styles.destGradient} />
@@ -340,6 +293,37 @@ const App: Component = () => {
             ))}
           </div>
         </section>
+        <Show when={selectedDestination()}>
+        {(dest) => (
+          <div class={styles.modalOverlay} onClick={() => setSelectedDestination(null)}>
+            <div class={styles.modalCard} onClick={(e: MouseEvent) => e.stopPropagation()}>
+              <button class={styles.modalClose} onClick={() => setSelectedDestination(null)}>
+                <span class="material-symbols-outlined">close</span>
+              </button>
+              <img src={dest().img} alt={dest().name} class={styles.modalImg} />
+              <div class={styles.modalBody}>
+              <div class={styles.modalTag}>{dest().tag}</div>
+                <h2 class={styles.modalTitle}>{dest().name}</h2>
+                  <p class={styles.modalDesc}>{dest().description}</p>
+                  <p class={styles.modalWeather}>
+                    <span class="material-symbols-outlined">wb_sunny</span>
+                {dest().weather}
+                  </p>
+              <div class={styles.modalMeta}>
+                <span class="material-symbols-outlined">hotel</span>
+                <span>{dest().properties} properties</span>
+              </div>
+              <div class={styles.modalHighlights}>
+                {dest().highlights.map((h) => (
+                  <span class={styles.highlightChip}>{h}</span>
+                ))}
+              </div>
+              <button class={styles.modalBookBtn}>Explore {dest().name}</button>
+            </div>
+            </div>
+          </div>
+        )}
+      </Show>
 
         {/* ── HIDDEN GEMS ── */}
         <section class={styles.gemsSection}>
@@ -351,7 +335,7 @@ const App: Component = () => {
 
             <div class={styles.gemsGrid}>
               {gems.map((g) => (
-                <div class={styles.gemCard}>
+                <div class={styles.gemCard} onClick={() => setSelectedGem(g)} style="cursor: pointer;">
                   <div class={styles.gemImgWrap}>
                     <img src={g.img} alt={g.title} class={styles.gemImg} />
                   </div>
@@ -370,7 +354,41 @@ const App: Component = () => {
               ))}
             </div>
           </div>
+
         </section>
+        <Show when={selectedGem()}>
+        {(gem) => (
+          <div class={styles.modalOverlay} onClick={() => setSelectedGem(null)}>
+            <div class={styles.modalCard} onClick={(e: MouseEvent) => e.stopPropagation()}>
+              <button class={styles.modalClose} onClick={() => setSelectedGem(null)}>
+                <span class="material-symbols-outlined">close</span>
+              </button>
+              <img src={gem().img} alt={gem().title} class={styles.modalImg} />
+              <div class={styles.modalBody}>
+                <h2 class={styles.modalTitle}>{gem().title}</h2>
+                  <p class={styles.modalDesc}>{gem().details}</p>
+                <div class={styles.modalInfoRow}>
+                  <span><span class="material-symbols-outlined">schedule</span>{gem().duration}</span>
+                  <span><span class="material-symbols-outlined">group</span>{gem().groupSize}</span>
+                </div>
+                <div class={styles.modalHighlights}>
+                  {gem().includes.map((i) => (
+                    <span class={styles.highlightChip}>{i}</span>
+                  ))}
+                </div>
+                <div class={styles.modalMeta}>
+                  <span class={styles.gemPrice}>{gem().price}</span>
+                  <span class={styles.gemRating}>
+                    <span class="material-symbols-outlined">star</span>
+                    {gem().rating}
+                  </span>
+                </div>
+                <button class={styles.modalBookBtn}>Book Now</button>
+              </div>
+            </div>
+          </div>
+        )}
+      </Show>
       </main>
       <Footer />
     </div>
