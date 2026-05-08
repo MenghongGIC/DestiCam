@@ -33,21 +33,21 @@ const NAV_ITEM_DATA:{title:string, path:string}[] = [
 ];
 
 
-// function NavItems(){
-//     const location = useLocation();
+// // function NavItems(){
+// //     const location = useLocation();
     
 
-//     const [currentLocation, setCurrentLocation] = createSignal(location.pathname);
+// //     const [currentLocation, setCurrentLocation] = createSignal(location.pathname);
 
-//     createEffect(
-//         on(useLocation, (location) => {
-//             setCurrentLocation(location.pathname);
-//         })
-//     );
+// //     createEffect(
+// //         on(useLocation, (location) => {
+// //             setCurrentLocation(location.pathname);
+// //         })
+// //     );
 
-//     onMount(() => {
-//         setCurrentLocation(location.pathname);
-//     })
+// //     onMount(() => {
+// //         setCurrentLocation(location.pathname);
+// //     })
 
 //     return (<>
 //         <div class={styles.nav_box}>
@@ -67,7 +67,6 @@ const NAV_ITEM_DATA:{title:string, path:string}[] = [
         
 //     </>)
 // }
-
 function NavItems(props: { onNavigate?: () => void }) {
     const location = useLocation();
     const activeSegment = () =>
@@ -104,9 +103,6 @@ export default function NavigationBar() {
         window.addEventListener("resize", handler);
         onCleanup(() => window.removeEventListener("resize", handler));
     });
-
-    const isDesktop = () => innerWidth() >= 1110;
-
     // For hamburger menu
     const [menuOpen, setMenuOpen] = createSignal(false);
     const closeMenu = () => setMenuOpen(false);
@@ -123,10 +119,28 @@ export default function NavigationBar() {
     });
     //
 
+    const isDesktop = () => innerWidth() >= 1110;
+
+    // Close menu when clicking outside
+    onMount(() => {
+        const handler = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (!target.closest(`.${styles.container}`)) closeMenu();
+        };
+        document.addEventListener("click", handler);
+        onCleanup(() => document.removeEventListener("click", handler));
+    });
+    //
+
     return (
         <div class={styles.container}>
+ 
+            {/* ── Top bar: logo · [inline nav on desktop] · buttons ── */}
             <div class={styles.frame_1}>
+ 
+                {/* Logo */}
                 <img
+                   
                     class={styles.logo}
                     src="/logo.png"
                     width={100}
@@ -146,7 +160,7 @@ export default function NavigationBar() {
                     <button
                         class={`btn btn-ghost ${styles.sign_in_btn}`}
                         onClick={() => navigate("/login")}
-                    >
+                        >
                         Sign In
                     </button>
                     <button
@@ -173,8 +187,29 @@ export default function NavigationBar() {
                             <span class={`${styles.bar} ${menuOpen() ? styles.bar_open_3 : ""}`} />
                         </button>
                     </Show>
+ 
+                    {/* Hamburger — mobile/tablet only */}
+                    <Show when={!isDesktop()}>
+                        <button
+                            class={styles.hamburger}
+                            aria-label="Toggle navigation menu"
+                            aria-expanded={menuOpen()}
+                            onClick={(e: MouseEvent) => {
+                                e.stopPropagation();``
+                                setMenuOpen((v) => !v);
+                            }}
+                        >
+                            {/* Animated three-line icon */}
+                            <span class={`${styles.bar} ${menuOpen() ? styles.bar_open_1 : ""}`} />
+                            <span class={`${styles.bar} ${menuOpen() ? styles.bar_open_2 : ""}`} />
+                            <span class={`${styles.bar} ${menuOpen() ? styles.bar_open_3 : ""}`} />
+                        </button>
+                    </Show>
                 </div>
             </div>
+ 
+            {/* Scrollable sub-bar — medium breakpoint only */}
+            <Show when={!isDesktop() && innerWidth() >= 640}>
  
             {/* Scrollable sub-bar — medium breakpoint only */}
             <Show when={!isDesktop() && innerWidth() >= 640}>
@@ -182,7 +217,19 @@ export default function NavigationBar() {
                     <nav class={styles.nav_box}>
                         <NavItems />
                     </nav>
+                    <nav class={styles.nav_box}>
+                        <NavItems />
+                    </nav>
                 </div>
+            </Show>
+            
+            {/* Dropdown menu — mobile only */}
+            <Show when={!isDesktop() && innerWidth() < 640 && menuOpen()}>
+                <nav class={styles.mobile_menu} onClick={closeMenu}>
+                    <NavItems onNavigate={closeMenu} />
+                </nav>
+            </Show>
+ 
             </Show>
             
             {/* Dropdown menu — mobile only */}
