@@ -28,12 +28,12 @@ const RECOMMENDED_BUNDLES = [
 ];
 
 const VIBES = [
-  { id: "relaxing",  label: "Relaxing",  sub: "beaches · spas · sunsets",     image: "/public/beaches2.jpg" },
-  { id: "cultural",  label: "Cultural",  sub: "temples · history · food",      image: "/public/cultural.jpg" },
-  { id: "adventure", label: "Adventure", sub: "jungle · kayak · trek",         image: "/public/kayak.jpg" },
-  { id: "foodie",    label: "Foodie",    sub: "markets · cook · restaurants",  image: "/public/foodie.jpg" },
-  { id: "wellness",  label: "Wellness",  sub: "yoga · nature",                 image: "/public/wellness.jpg" },
-  { id: "budget",    label: "Budget",    sub: "local · affordable",            image: "/public/budget.jpg" },
+  { id: "relaxing",  label: "Relaxing",  sub: "beaches · spas · sunsets",     image: "/beaches2.jpg" },
+  { id: "cultural",  label: "Cultural",  sub: "temples · history · food",      image: "/cultural.jpg" },
+  { id: "adventure", label: "Adventure", sub: "jungle · kayak · trek",         image: "/kayak.jpg" },
+  { id: "foodie",    label: "Foodie",    sub: "markets · cook · restaurants",  image: "/foodie.jpg" },
+  { id: "wellness",  label: "Wellness",  sub: "yoga · nature",                 image: "/wellness.jpg" },
+  { id: "budget",    label: "Budget",    sub: "local · affordable",            image: "/budget.jpg" },
 ];
 
 const index: Component = () => {
