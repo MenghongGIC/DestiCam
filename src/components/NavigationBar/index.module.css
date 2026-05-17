@@ -56,8 +56,6 @@
   margin: 0 1rem;
   overflow: auto;
   padding: 0.75rem 0;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 
 .nav_box::-webkit-scrollbar {

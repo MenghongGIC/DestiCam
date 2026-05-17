@@ -97,7 +97,6 @@ export default function NavigationBar() {
     const [innerWidth, setInnerWidth] = createSignal(
         typeof window !== "undefined" ? window.innerWidth : 1200
     );
-    const isDesktop = () => innerWidth() >= 1110;
 
     onMount(() => {
         const handler = () => setInnerWidth(window.innerWidth);
@@ -134,7 +133,7 @@ export default function NavigationBar() {
                 />
  
                 {/* Inline nav — desktop only */}
-                <Show when={isDesktop()}>
+                <Show when={innerWidth() > 640}>
                     <nav class={styles.nav_box}>
                         <NavItems />
                     </nav>
@@ -154,8 +153,7 @@ export default function NavigationBar() {
                     >
                         Sign Up
                     </button>
- 
-                    {/* Hamburger — mobile/tablet only */}
+
                     <Show when={innerWidth() <= 640}>
                         <button
                             class={styles.hamburger}
@@ -174,17 +172,8 @@ export default function NavigationBar() {
                     </Show>
                 </div>
             </div>
-            {/* Scrollable sub-bar — medium breakpoint only */}
-            <Show when={!isDesktop() && innerWidth() >= 640}>
-                <div class={styles.frame_2}>
-                    <nav class={styles.nav_box}>
-                        <NavItems />
-                    </nav>
-                </div>
-            </Show>
             
-            {/* Dropdown menu — mobile only */}
-            <Show when={!isDesktop() && innerWidth() < 640 && menuOpen()}>
+            <Show when={innerWidth() < 640 && menuOpen()}>
                 <nav class={styles.mobile_menu} onClick={closeMenu}>
                     <NavItems onNavigate={closeMenu} />
                 </nav>
