@@ -16,7 +16,7 @@ const MAIN_PLACE = {
   id: 1,
   title: "Koh Rong island",
   location: "Sihanoukville · Beach · Relax vibe",
-  image: "/public/beaches2.jpg",
+  image: "/beaches2.jpg",
   description:
     "Koh Rong – A tropical paradise with white-sand beaches, clear turquoise waters, and lush jungles. Ideal for relaxing, snorkeling, and exploring hidden waterfalls, with friendly local communities and fresh seafood.",
   bestTime: "November – April Dry season",
