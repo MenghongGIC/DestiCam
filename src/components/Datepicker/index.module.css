@@ -9,4 +9,5 @@
     flex-direction: row;
     justify-content: space-between;
     min-width: fit-content;
+    width: 100%;
 }
