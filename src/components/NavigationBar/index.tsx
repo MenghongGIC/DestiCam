@@ -1,4 +1,4 @@
-import { createSignal, onMount, onCleanup, createEffect, on, For, Show  } from "solid-js";
+import { createSignal, onMount, onCleanup, For, Show  } from "solid-js";
 
 import { A, useLocation, useNavigate } from "@solidjs/router";
 
@@ -97,6 +97,7 @@ export default function NavigationBar() {
     const [innerWidth, setInnerWidth] = createSignal(
         typeof window !== "undefined" ? window.innerWidth : 1200
     );
+    const isDesktop = () => innerWidth() >= 1110;
 
     onMount(() => {
         const handler = () => setInnerWidth(window.innerWidth);
@@ -117,30 +118,14 @@ export default function NavigationBar() {
         document.addEventListener("click", handler);
         onCleanup(() => document.removeEventListener("click", handler));
     });
-    //
-
-    const isDesktop = () => innerWidth() >= 1110;
-
-    // Close menu when clicking outside
-    onMount(() => {
-        const handler = (e: MouseEvent) => {
-            const target = e.target as HTMLElement;
-            if (!target.closest(`.${styles.container}`)) closeMenu();
-        };
-        document.addEventListener("click", handler);
-        onCleanup(() => document.removeEventListener("click", handler));
-    });
-    //
-
     return (
         <div class={styles.container}>
  
             {/* ── Top bar: logo · [inline nav on desktop] · buttons ── */}
             <div class={styles.frame_1}>
- 
+
                 {/* Logo */}
                 <img
-                   
                     class={styles.logo}
                     src="/logo.png"
                     width={100}
@@ -171,7 +156,7 @@ export default function NavigationBar() {
                     </button>
  
                     {/* Hamburger — mobile/tablet only */}
-                    <Show when={!isDesktop()}>
+                    <Show when={innerWidth() <= 640}>
                         <button
                             class={styles.hamburger}
                             aria-label="Toggle navigation menu"
@@ -187,39 +172,14 @@ export default function NavigationBar() {
                             <span class={`${styles.bar} ${menuOpen() ? styles.bar_open_3 : ""}`} />
                         </button>
                     </Show>
- 
-                    {/* Hamburger — mobile/tablet only */}
-                    <Show when={!isDesktop()}>
-                        <button
-                            class={styles.hamburger}
-                            aria-label="Toggle navigation menu"
-                            aria-expanded={menuOpen()}
-                            onClick={(e: MouseEvent) => {
-                                e.stopPropagation();``
-                                setMenuOpen((v) => !v);
-                            }}
-                        >
-                            {/* Animated three-line icon */}
-                            <span class={`${styles.bar} ${menuOpen() ? styles.bar_open_1 : ""}`} />
-                            <span class={`${styles.bar} ${menuOpen() ? styles.bar_open_2 : ""}`} />
-                            <span class={`${styles.bar} ${menuOpen() ? styles.bar_open_3 : ""}`} />
-                        </button>
-                    </Show>
                 </div>
             </div>
- 
-            {/* Scrollable sub-bar — medium breakpoint only */}
-            <Show when={!isDesktop() && innerWidth() >= 640}>
- 
             {/* Scrollable sub-bar — medium breakpoint only */}
             <Show when={!isDesktop() && innerWidth() >= 640}>
                 <div class={styles.frame_2}>
                     <nav class={styles.nav_box}>
                         <NavItems />
                     </nav>
-                    <nav class={styles.nav_box}>
-                        <NavItems />
-                    </nav>
                 </div>
             </Show>
             
@@ -229,16 +189,6 @@ export default function NavigationBar() {
                     <NavItems onNavigate={closeMenu} />
                 </nav>
             </Show>
- 
-            </Show>
-            
-            {/* Dropdown menu — mobile only */}
-            <Show when={!isDesktop() && innerWidth() < 640 && menuOpen()}>
-                <nav class={styles.mobile_menu} onClick={closeMenu}>
-                    <NavItems onNavigate={closeMenu} />
-                </nav>
-            </Show>
- 
         </div>
     );
 }
