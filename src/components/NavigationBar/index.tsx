@@ -94,12 +94,11 @@ function NavItems(props: { onNavigate?: () => void }) {
 
 export default function NavigationBar() {
     const navigate = useNavigate();
-    const [innerWidth, setInnerWidth] = createSignal(
-        typeof window !== "undefined" ? window.innerWidth : 1200
-    );
+    const [innerWidth, setInnerWidth] = createSignal(0);
 
     onMount(() => {
         const handler = () => setInnerWidth(window.innerWidth);
+        handler();
         window.addEventListener("resize", handler);
         onCleanup(() => window.removeEventListener("resize", handler));
     });
@@ -117,9 +116,9 @@ export default function NavigationBar() {
         document.addEventListener("click", handler);
         onCleanup(() => document.removeEventListener("click", handler));
     });
+
     return (
         <div class={styles.container}>
- 
             {/* ── Top bar: logo · [inline nav on desktop] · buttons ── */}
             <div class={styles.frame_1}>
 
@@ -131,15 +130,13 @@ export default function NavigationBar() {
                     alt="Logo"
                     onClick={() => navigate("/home")}
                 />
- 
-                {/* Inline nav — desktop only */}
+
                 <Show when={innerWidth() > 640}>
                     <nav class={styles.nav_box}>
                         <NavItems />
                     </nav>
                 </Show>
- 
-                {/* Right-side actions */}
+
                 <div class={styles.account_box}>
                     <button
                         class={`btn btn-ghost ${styles.sign_in_btn}`}
@@ -173,7 +170,7 @@ export default function NavigationBar() {
                 </div>
             </div>
             
-            <Show when={innerWidth() < 640 && menuOpen()}>
+            <Show when={innerWidth() <= 640 && menuOpen()}>
                 <nav class={styles.mobile_menu} onClick={closeMenu}>
                     <NavItems onNavigate={closeMenu} />
                 </nav>
